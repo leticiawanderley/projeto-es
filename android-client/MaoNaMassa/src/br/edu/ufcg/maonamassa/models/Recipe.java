@@ -1,35 +1,41 @@
 package br.edu.ufcg.maonamassa.models;
 
-import java.io.ObjectInputStream.GetField;
-
 /**
  * Exemplo de como deve funcionar as classes armazenaveis.
- * Todos os campos deve ser passados como string para
  * @author JoãoPedro
  *
  */
 
 
-public class Recipe extends Storable {
+public class Recipe extends Storable<Recipe> {
 
 	private int id;
 	private String name;
-	
 	
 	public Recipe(String name) {
 		this.name = name;
 	}
 	
-	public void create() {
-		create(Integer.toString(id), name);
+	public String getName() {
+		return name;
 	}
+
+
+	public void setName(String name) {
+		this.name = name;
+		this.update();
+	}
+
+
+	public int getId() {
+		return id;
+	}
+
+
 	
-	public void update() {
-		update(Integer.toString(id), name);
-	}
 	
-	public void delete() {
-		delete(Integer.toString(id));
-	}
+	
+	
+	
 	
 }

@@ -7,7 +7,7 @@
 
 # Java class files
 *.class
-android-client/.metadata
+android-client/.metadata/
 
 # Generated files
 android-client/MaoNaMassa/bin/

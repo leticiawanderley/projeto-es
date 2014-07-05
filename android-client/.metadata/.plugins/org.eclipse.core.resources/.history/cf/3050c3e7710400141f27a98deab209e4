@@ -1,0 +1,28 @@
+package br.edu.ufcg.maonamassa.models;
+
+
+
+
+public class Recipe extends Storable {
+
+	private int id;
+	private String name;
+	
+	
+	public Recipe(String name) {
+		this.name = name;
+	}
+	
+	public void create() {
+		create(Integer.toString(id), name);
+	}
+	
+	public void update() {
+		create(Integer.toString(id), name);
+	}
+	
+	public void delete() {
+		create(Integer.toString(id));
+	}
+	
+}

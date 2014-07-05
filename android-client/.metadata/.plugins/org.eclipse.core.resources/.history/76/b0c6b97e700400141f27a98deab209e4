@@ -1,0 +1,12 @@
+package br.edu.ufcg.maonamassa.models;
+
+public class Recipe extends Storable {
+
+	private int id;
+	private String name;
+	
+	public Recipe() {
+		create(Object... args);
+	}
+	
+}

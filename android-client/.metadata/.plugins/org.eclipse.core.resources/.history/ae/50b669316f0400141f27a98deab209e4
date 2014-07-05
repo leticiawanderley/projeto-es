@@ -1,0 +1,12 @@
+package br.edu.ufcg.maonamassa.models;
+
+public class Recipe {
+
+	private int id;
+	private String name;
+	
+	public Recipe() {
+		self.create(name);
+	}
+	
+}

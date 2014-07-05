@@ -1,0 +1,9 @@
+package br.edu.ufcg.maonamassa.models;
+
+public abstract class Storable {
+
+	public void create(T... args){
+		
+	}
+	
+}

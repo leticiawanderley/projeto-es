@@ -15,6 +15,23 @@ public class RecipeBook extends Storable<RecipeBook>{
 		this.owner = owner;
 		this.recipes = new ArrayList<Recipe>();
 	}
+	
+	public void addRecipe(Recipe newRecipe) {
+		this.recipes.add(newRecipe);
+	}
+	
+	public void removeRecipe(Recipe recipe) {
+		this.recipes.remove(recipe);
+	}
+	
+	public Recipe searchRecipe(String name) {
+		for (Recipe r : this.recipes) {
+			if (r.getName().equals(name)) {
+				return r;
+			}
+		}
+		return null;
+	}
 
 	public User getOwner() {
 		return owner;

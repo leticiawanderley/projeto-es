@@ -1,4 +1,4 @@
-package br.edu.ufcg.maonamassa.models;
+package br.edu.ufcg.maonamassa.utils;
 
 import java.lang.reflect.Field;
 

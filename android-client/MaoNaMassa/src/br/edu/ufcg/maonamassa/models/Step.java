@@ -1,5 +1,7 @@
 package br.edu.ufcg.maonamassa.models;
 
+import br.edu.ufcg.maonamassa.utils.Storable;
+
 public class Step extends Storable<Step>{
 	
 	private Long id;

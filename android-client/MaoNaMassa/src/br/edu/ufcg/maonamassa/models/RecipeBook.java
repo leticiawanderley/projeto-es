@@ -3,6 +3,8 @@ package br.edu.ufcg.maonamassa.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.edu.ufcg.maonamassa.utils.Storable;
+
 public class RecipeBook extends Storable<RecipeBook>{
 	
 	private Long id;

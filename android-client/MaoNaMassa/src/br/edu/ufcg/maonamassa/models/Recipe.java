@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import br.edu.ufcg.maonamassa.utils.Storable;
+
 /**
  * Exemplo de como deve funcionar as classes armazenaveis.
  * @author Jo�oPedro

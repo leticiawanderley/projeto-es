@@ -1,6 +1,13 @@
 package br.edu.ufcg.maonamassa.utils;
 
-import java.lang.reflect.Field;
+import java.lang.reflect.Type;
+
+import br.edu.ufcg.maonamassa.models.Recipe;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.*;
+import com.google.gson.*;
+
 
 /*
  * Classe que deve ser herdada por todos os objetos que irão ser armazenados 
@@ -10,24 +17,25 @@ import java.lang.reflect.Field;
 
 public abstract class Storable<T> {
 
-	private Field[] getFields() {
-		Class<?> aClass = this.getClass();
-		return aClass.getFields();
+	public void create(){
+		
+		String result = jsonify();
+	
+		String handlerArguments = "create" + this.getClass().getName() + "?json=" + result;
+		
+		sendRequest(handlerArguments);
+	}
+
+	public String jsonify() {
+		Type fooType = new TypeToken<T>() {}.getType();
+		Gson json = new GsonBuilder().serializeNulls().create();
+		String result = json.toJson(this, fooType);
+		return result;
 	}
 	
-	public void create(){
-		StringBuilder handlerArguments = new StringBuilder();
-		handlerArguments.append("create" + this.getClass().getName() + "?");
-		for(Field field: getFields()){
-			String value = "";
-			try {
-				value = field.get(this).toString();
-			} catch (Exception e) {
-				e.printStackTrace();
-			} 
-			handlerArguments.append(field.getName() + "=" + value);
-		}
-		sendRequest(handlerArguments.toString());
+	public T desjsonify(String jsonstr, Class<T> classe) {
+		Gson json = new GsonBuilder().serializeNulls().create();
+		return json.fromJson(jsonstr, classe);
 	}
 	
 	private void sendRequest(String handlerArguments) {
@@ -35,33 +43,11 @@ public abstract class Storable<T> {
 	}
 
 	public void update(){
-		StringBuilder handlerArguments = new StringBuilder();
-		handlerArguments.append("update" + this.getClass().getName() + "?");
-		for(Field field: getFields()){
-			String value = "";
-			try {
-				value = field.get(this).toString();
-			} catch (Exception e) {
-				e.printStackTrace();
-			} 
-			handlerArguments.append(field.getName() + "=" + value);
-		}
-		sendRequest(handlerArguments.toString());
+		
 	}
 	
 	public void delete(){
-		StringBuilder handlerArguments = new StringBuilder();
-		handlerArguments.append("delete" + this.getClass().getName() + "?");
-		String value = "";
-		Field field = null;
-		try {
-			field = this.getClass().getField("id");
-			value = field.get(this).toString();
-		} catch (Exception e) {
-				e.printStackTrace();
-		} 
-		handlerArguments.append(field.getName() + "=" + value);
-		sendRequest(handlerArguments.toString());
+		
 	}
 	
 }

@@ -2,7 +2,7 @@ package br.edu.ufcg.maonamassa.models;
 
 import br.edu.ufcg.maonamassa.utils.Storable;
 
-public class Step extends Storable<Step>{
+public class Step extends Storable<Step> {
 	
 	private Long id;
 	
@@ -16,6 +16,7 @@ public class Step extends Storable<Step>{
 		this.description = description;
 		this.time = time;
 	}
+
 
 	public String getDescription() {
 		return description;

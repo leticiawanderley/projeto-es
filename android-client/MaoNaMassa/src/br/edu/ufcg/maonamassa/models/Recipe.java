@@ -50,7 +50,6 @@ public class Recipe extends Storable<Recipe> {
 
 	public void setName(String name) {
 		this.name = name;
-		this.update();
 	}
 
 	public List<String> getIngredients() {
@@ -72,4 +71,6 @@ public class Recipe extends Storable<Recipe> {
 	public Long getId() {
 		return id;
 	}	
+	
+	
 }

@@ -2,8 +2,6 @@ package br.edu.ufcg.maonamassa.utils;
 
 import java.lang.reflect.Type;
 
-import br.edu.ufcg.maonamassa.models.Recipe;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.*;
 import com.google.gson.*;
@@ -21,7 +19,7 @@ public abstract class Storable<T> {
 		
 		String result = jsonify();
 	
-		String handlerArguments = "create" + this.getClass().getName() + "?json=" + result;
+		String handlerArguments = "create?what=" + this.getClass().getName() + "json=" + result;
 		
 		sendRequest(handlerArguments);
 	}
@@ -33,9 +31,11 @@ public abstract class Storable<T> {
 		return result;
 	}
 	
-	public T desjsonify(String jsonstr, Class<T> classe) {
+	public T desjsonify(String jsonstr) {
 		Gson json = new GsonBuilder().serializeNulls().create();
-		return json.fromJson(jsonstr, classe);
+		@SuppressWarnings("unchecked")
+		T fromJson = (T) json.fromJson(jsonstr, this.getClass());
+		return fromJson;
 	}
 	
 	private void sendRequest(String handlerArguments) {

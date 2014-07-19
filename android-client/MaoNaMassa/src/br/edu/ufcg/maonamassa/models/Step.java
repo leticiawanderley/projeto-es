@@ -33,6 +33,10 @@ public class Step extends Storable<Step> {
 	public void setTime(double time) {
 		this.time = time;
 	}
+	
+	public boolean isTimed() {
+		return time > 0;
+	}
 
 	public Annex getAnnex() {
 		return annex;

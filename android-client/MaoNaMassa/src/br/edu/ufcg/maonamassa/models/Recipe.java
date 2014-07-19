@@ -7,8 +7,8 @@ import java.util.List;
 import br.edu.ufcg.maonamassa.utils.Storable;
 
 /**
- * Exemplo de como deve funcionar as classes armazenaveis.
- * @author Jo�oPedro
+ * Recipe class
+ * @author JoaoPedro
  *
  */
 
@@ -17,6 +17,8 @@ public class Recipe extends Storable<Recipe> {
 	private Long id;
 	
 	private String name;
+	
+	private User author;
 	
 	private List<String> ingredients;
 	
@@ -70,6 +72,14 @@ public class Recipe extends Storable<Recipe> {
 
 	public Long getId() {
 		return id;
+	}
+
+	public User getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(User author) {
+		this.author = author;
 	}	
 	
 	

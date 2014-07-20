@@ -5,6 +5,7 @@
     <string name="edit_message">Coloque uma mensagem</string>
     <string name="button_send">Enviar</string>
     <string name="action_settings">Opções</string>
+    <string name="action_add_recipe">Nova Receita</string>
     <string name="title_activity_main">Atividade Principal</string>
     <string name="title_activity_display_message">MyMessage</string>
     <string name="hello_world">Hello world!</string>

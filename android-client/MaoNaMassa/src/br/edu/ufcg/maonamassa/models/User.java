@@ -12,12 +12,24 @@ public class User {
 	
 	private RecipeBook book;
 	
+	/*
+	 * Constructor for the current user. After logged in.
+	 */
 	public User(Long id, String email, String name, String accessToken) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.accessToken = accessToken;
 		this.book = new RecipeBook();
+	}
+	
+	/*
+	 * Constructor for other users in the system
+	 */
+	public User(Long id, String email, String name) {
+		this.id = id;
+		this.name = name;
+		this.email = email;
 	}
 
 	public Long getId() {

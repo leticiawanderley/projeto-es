@@ -30,7 +30,7 @@ public abstract class Storable<Recipe> {
 	private final String DELETE_ROUTE = "delete/";
 	private final String SEARCH_ROUTE = "search/";
 
-	public void create(User user){
+	public void create(User user) throws Exception {
 		String result = jsonify();
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append(CREATE_ROUTE + "?");
@@ -57,19 +57,27 @@ public abstract class Storable<Recipe> {
 		return fromJson;
 	}
 	
-	private void sendRequest(String handlerArguments) {
+	private List<Recipe> desjsonifyList(String jsonstr) {
+		Gson json = new GsonBuilder().serializeNulls().create();
+		Type fooType = new TypeToken<List<Recipe>>() {}.getType();
+		List<Recipe> fromJson = json.fromJson(jsonstr, fooType);
+		return fromJson;
+	}
+	
+	private String sendRequest(String handlerArguments) throws Exception {
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append(SERVER_URL);
 		stringBuilder.append("/");
 		stringBuilder.append(handlerArguments);
 		String url = stringBuilder.toString();
 		// TODO Envia o request para o server com os argumentos
+		return HttpURLConnection.sendGet(url);
 	}
 
-	public void update(User user){
+	public void update(User user) throws Exception{
 		String result = jsonify();
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append(CREATE_ROUTE + "?");
+		stringBuilder.append(UPDATE_ROUTE + "?");
 		stringBuilder.append("what=" + this.getClass().getName());
 		stringBuilder.append("user_id=" + user.getId());
 		stringBuilder.append("token=" + user.getAccessToken());
@@ -79,12 +87,28 @@ public abstract class Storable<Recipe> {
 		sendRequest(handlerArguments);
 	}
 	
-	public void delete(User user){
-		
+	public void delete(User user) throws Exception{
+		String result = jsonify();
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append(DELETE_ROUTE + "?");
+		stringBuilder.append("what=" + this.getClass().getName());
+		stringBuilder.append("user_id=" + user.getId());
+		stringBuilder.append("token=" + user.getAccessToken());
+		stringBuilder.append("json=" + result);
+		String handlerArguments = stringBuilder.toString();
+		sendRequest(handlerArguments);
 	}
 	
-	public List<Recipe> search(User user){
-		return null;
+	public List<Recipe> search(StorableQuery query) throws Exception{
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append(SEARCH_ROUTE + "?");
+		stringBuilder.append("where=" + query.getWhere());
+		String desc = query.isDesc()?"true":"false";
+		stringBuilder.append("desc=" + desc);
+		stringBuilder.append("limit=" + query.getLimit());
+		String handlerArguments = stringBuilder.toString();
+		String result = sendRequest(handlerArguments);
+		return desjsonifyList(result);
 	}
 	
 }

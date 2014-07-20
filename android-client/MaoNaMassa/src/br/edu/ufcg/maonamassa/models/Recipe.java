@@ -24,8 +24,10 @@ public class Recipe extends Storable<Recipe> {
 	
 	private List<Step> steps;
 	
-	public Recipe(String name) {
+	public Recipe(Long id, String name, User author) {
+		this.id = id;
 		this.name = name;
+		this.author = author;
 		this.ingredients = new ArrayList<String>();
 		this.steps = new LinkedList<Step>();
 	}

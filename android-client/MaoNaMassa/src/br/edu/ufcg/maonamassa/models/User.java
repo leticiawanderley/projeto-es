@@ -6,10 +6,17 @@ public class User {
 	
 	private String email;
 	
+	private String name;
+	
+	private String accessToken;
+	
 	private RecipeBook book;
 	
-	public User(String email) {
+	public User(Long id, String email, String name, String accessToken) {
+		this.id = id;
+		this.name = name;
 		this.email = email;
+		this.accessToken = accessToken;
 		this.book = new RecipeBook();
 	}
 
@@ -31,5 +38,21 @@ public class User {
 
 	public void setBook(RecipeBook book) {
 		this.book = book;
+	}
+
+	public String getAccessToken() {
+		return accessToken;
+	}
+
+	public void setAccessToken(String accessToken) {
+		this.accessToken = accessToken;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}	
 }

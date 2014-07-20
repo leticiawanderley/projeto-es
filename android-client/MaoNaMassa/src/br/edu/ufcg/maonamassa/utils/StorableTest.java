@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.edu.ufcg.maonamassa.models.Recipe;
 import br.edu.ufcg.maonamassa.models.Step;
+import br.edu.ufcg.maonamassa.models.User;
 import junit.framework.TestCase;
 
 public class StorableTest extends TestCase {
@@ -12,7 +13,8 @@ public class StorableTest extends TestCase {
 	Recipe that;
 	
 	protected void setUp() throws Exception {
-		that = new Recipe("teste");
+		User user = new User(23223L, "joopeeds@gmail.com", "Joao Pedro", "3782392jadoasjhdks293823");
+		that = new Recipe(121893792L, "teste", user);
 	}
 
 	public void testRecipe() {
@@ -22,10 +24,10 @@ public class StorableTest extends TestCase {
 		that.addStep(new Step("Cortar melancia", 0));
 		that.addStep(new Step("Cozinhar tudo", 20));
 		System.out.println(that.jsonify());
-		assertEquals("{\"id\":null,\"name\":\"teste\",\"author\":null,\"ingredients\":[\"Chocolate\",\"Melancia\",\"Leite\"],\"steps\":[{\"id\":null,\"description\":\"Cortar melancia\",\"time\":0.0,\"annex\":null},{\"id\":null,\"description\":\"Cozinhar tudo\",\"time\":20.0,\"annex\":null}]}",that.jsonify());
-		Recipe ok = (Recipe) that.desjsonify("{\"id\":null,\"name\":\"teste\",\"author\":null,\"ingredients\":[\"Chocolate\",\"Melancia\",\"Leite\"],\"steps\":[{\"id\":null,\"description\":\"Cortar melancia\",\"time\":0.0,\"annex\":null},{\"id\":null,\"description\":\"Cozinhar tudo\",\"time\":20.0,\"annex\":null}]}");
+		assertEquals("{\"id\":121893792,\"name\":\"teste\",\"author\":{\"id\":23223,\"email\":\"joopeeds@gmail.com\",\"name\":\"Joao Pedro\",\"accessToken\":\"3782392jadoasjhdks293823\",\"book\":{\"id\":null,\"recipes\":[]}},\"ingredients\":[\"Chocolate\",\"Melancia\",\"Leite\"],\"steps\":[{\"id\":null,\"description\":\"Cortar melancia\",\"time\":0.0,\"annex\":null},{\"id\":null,\"description\":\"Cozinhar tudo\",\"time\":20.0,\"annex\":null}]}",that.jsonify());
+		Recipe ok = (Recipe) that.desjsonify("{\"id\":121893792,\"name\":\"teste\",\"author\":{\"id\":23223,\"email\":\"joopeeds@gmail.com\",\"name\":\"Joao Pedro\",\"accessToken\":\"3782392jadoasjhdks293823\",\"book\":{\"id\":null,\"recipes\":[]}},\"ingredients\":[\"Chocolate\",\"Melancia\",\"Leite\"],\"steps\":[{\"id\":null,\"description\":\"Cortar melancia\",\"time\":0.0,\"annex\":null},{\"id\":null,\"description\":\"Cozinhar tudo\",\"time\":20.0,\"annex\":null}]}");
 		assertEquals("teste",ok.getName());
-		assertEquals(null,ok.getId());
+		assertEquals(121893792L, ok.getId(), 0.1);
 		List<String> ing = ok.getIngredients();
 		List<String> exp = new ArrayList<String>();
 		exp.add("Chocolate");

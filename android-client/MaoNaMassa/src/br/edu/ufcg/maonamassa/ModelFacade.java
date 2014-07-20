@@ -3,17 +3,20 @@ package br.edu.ufcg.maonamassa;
 import br.edu.ufcg.maonamassa.models.Recipe;
 import br.edu.ufcg.maonamassa.models.RecipeBook;
 import br.edu.ufcg.maonamassa.models.Step;
+import br.edu.ufcg.maonamassa.models.User;
 
 public class ModelFacade {
 
 	private RecipeBook book;
+	private User user;
 
-	public ModelFacade(RecipeBook book) {
+	public ModelFacade(RecipeBook book, User user) {
 		this.book = book;
+		this.user = user;
 	}
 
-	public Recipe createRecipe(String name) {
-		return new Recipe(name);
+	public Recipe createRecipe(Long id, String name) {
+		return new Recipe(id, name, user);
 	}
 
 	public void addNewIngredient(Recipe recipe, String newIngredient) {

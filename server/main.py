@@ -34,6 +34,7 @@ class CodeHandler(webapp2.RequestHandler):
     def get(self):
         state = ""
         acc_tk = ""
+        id = ""
         id_status = {}
         if self.request.get("code") and self.request.get("state") == state:
             form_fields = {
@@ -60,6 +61,7 @@ class CodeHandler(webapp2.RequestHandler):
                     id_status['id'] = jwt['user_id']
                     id_status['email'] = jwt['email']
                     id_status["verified_email"] = jwt["verified_email"]
+                    id = id_status['id']
                 except:
                     id_status['valid'] = False
                     id_status['id'] = None
@@ -77,7 +79,7 @@ class CodeHandler(webapp2.RequestHandler):
                     new_user.put()
 
         if "valid" in id_status:
-            self.redirect('/login?authorized=yes&access_token='+acc_tk)
+            self.redirect('/login?authorized=yes&access_token='+acc_tk+"&id="+id)
         else:
             self.redirect('/login?authorized=no')
 
@@ -113,7 +115,7 @@ class LoginHandler(webapp2.RequestHandler):
     def get(self):
         if self.request.get("authorized"):
             if self.request.get("authorized") == "yes":
-                self.response.write(self.request.get("access_token"))
+                self.response.write("ACCESS TOKEN:"+ self.request.get("access_token") + "<br>USER ID:" + self.request.get("id"))
             else:
                 self.response.write("Not Authorized")
 
@@ -134,7 +136,7 @@ class SearchHandler(webapp2.RequestHandler):
     def get(self):
         all = Recipe.all()
         for recipe in all:
-            self.response.write(">>>" + recipe.name + " " + recipe.author.email + "<br>")
+            self.response.write(">>>" + recipe.name + " " + recipe.author.email + " " + recipe.author.name + "<br>")
             for step in sorted(list(recipe.steps), key=lambda x: x.order, reverse=True):
                 self.response.write(">>>>>>>" + step.description + " " + str(step.time) + "<br>")
             self.response.write("========<br>")
@@ -149,48 +151,36 @@ class CreateHandler(webapp2.RequestHandler):
             my = self.request.get("json")
             result = json.loads(my)
             what = self.request.get("what")
+            token = self.request.get("token")
+            user_id = urllib.unquote(self.request.get("user_id")).strip()
 
-            if what == "User":
-                self.create_user(result)
-            elif what == "Recipe":
-                self.create_recipe(result)
+            if what == "Recipe":
+                self.create_recipe(result, user_id, token)
         else:
             self.error(400)
 
 
-    def create_recipe(self, result):
+    def create_recipe(self, result, user_id, token):
         """
         Creates the recipe itself
         """
-        new_user = User(email=db.Email("joopeeds@gmail.com"))
-        new_user.put()
+        user = User.get(db.Key.from_path("User", user_id))
+        if user.access_token == token:
+            new_recipe = Recipe(
+                author=user,
+                name=result.get("name"),
+                ingredients=result.get("ingredients"))
+            new_recipe.put()
 
-        new_recipe = Recipe(
-            key_name=result.get("id"),
-            id=result.get("id"),
-            author=new_user,
-            name=result.get("name"),
-            ingredients=result.get("ingredients"))
-        new_recipe.put()
-
-        steps = result.get("steps")
-        for i in range(len(steps)):
-            step = steps[i]
-            new_step = Step(id=step.get("id"), description=step.get("description"), time=step.get("time"), order=i,
-                            recipe=new_recipe)
-            new_step.put()
-
-
-    def create_user(self, result):
-        """
-        Creates the recipe itself
-        """
-        new_user = User(
-            key_name=result.get("id"),
-            id=result.get("id"),
-            email=result.get("email")
-        )
-        new_user.put()
+            steps = result.get("steps")
+            for i in range(len(steps)):
+                step = steps[i]
+                new_step = Step(description=step.get("description"), time=step.get("time"), order=i,
+                                recipe=new_recipe)
+                new_step.put()
+        else:
+            self.response.write("Not Authorized")
+            self.error(401)
 
 
 app = webapp2.WSGIApplication([

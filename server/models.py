@@ -10,7 +10,6 @@ class User(db.Model):
 
 
 class Recipe(db.Model):
-    id = db.StringProperty(required=True)
     author = db.ReferenceProperty(User, required=True)
     name = db.StringProperty(required=True)
     ingredients = db.StringListProperty(str, indexed=True, default=[])
@@ -18,7 +17,6 @@ class Recipe(db.Model):
 
 class Step(db.Model):
     order = db.IntegerProperty(required=True)
-    id = db.StringProperty(required=True)
     description = db.StringProperty(required=True)
     time = db.FloatProperty(required=True)
     recipe = db.ReferenceProperty(Recipe, collection_name="steps")

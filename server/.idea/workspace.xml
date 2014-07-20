@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/main.py" line="164" mnemonic="9" />
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="aacf2203-f4f6-4b03-b7fa-7c9bc2cdd028" name="Default" comment="" />
     <ignored path="server.iws" />
@@ -29,7 +26,7 @@
       <file leaf-file-name="main.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="87" column="57" selection-start="3462" selection-end="3462" vertical-scroll-proportion="-0.44557822" vertical-offset="1741" max-vertical-offset="3536">
+            <state line="185" column="31" selection-start="6870" selection-end="6870" vertical-scroll-proportion="0.75622773" vertical-offset="2720" max-vertical-offset="3366">
               <folding>
                 <element signature="e#601#629#0" expanded="true" />
               </folding>
@@ -40,7 +37,7 @@
       <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="43" selection-start="117" selection-end="117" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493">
+            <state line="11" column="23" selection-start="336" selection-end="336" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
               <folding />
             </state>
           </provider>
@@ -350,14 +347,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="43" selection-start="117" selection-end="117" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493">
+        <state line="11" column="23" selection-start="336" selection-end="336" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="57" selection-start="3462" selection-end="3462" vertical-scroll-proportion="-0.44557822" vertical-offset="1741" max-vertical-offset="3536">
+        <state line="185" column="31" selection-start="6870" selection-end="6870" vertical-scroll-proportion="0.75622773" vertical-offset="2720" max-vertical-offset="3366">
           <folding>
             <element signature="e#601#629#0" expanded="true" />
           </folding>

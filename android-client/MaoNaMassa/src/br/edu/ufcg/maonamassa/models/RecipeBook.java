@@ -43,4 +43,10 @@ public class RecipeBook extends Storable<RecipeBook>{
 	public Long getId() {
 		return id;
 	}
+
+	@Override
+	public String toString() {
+		return "RecipeBook [id=" + id + ", recipes=" + recipes + "]";
+	}
+	
 }

@@ -4,6 +4,7 @@ import br.edu.ufcg.maonamassa.utils.Storable;
 
 public class Step extends Storable<Step> {
 	
+	
 	private Long id;
 	
 	private String description;
@@ -49,4 +50,11 @@ public class Step extends Storable<Step> {
 	public Long getId() {
 		return id;
 	}	
+
+	@Override
+	public String toString() {
+		return "Step [id=" + id + ", description=" + description + ", time="
+				+ time + ", annex=" + annex + "]";
+	}
+
 }

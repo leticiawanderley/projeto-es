@@ -1,7 +1,9 @@
 package br.edu.ufcg.maonamassa.utils;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import br.edu.ufcg.maonamassa.models.User;
 
@@ -57,11 +59,24 @@ public abstract class Storable<Recipe> {
 		return fromJson;
 	}
 	
-	private List<Recipe> desjsonifyList(String jsonstr) {
-		Gson json = new GsonBuilder().serializeNulls().create();
+	public String jsonifyList(List<Recipe> that) {
 		Type fooType = new TypeToken<List<Recipe>>() {}.getType();
-		List<Recipe> fromJson = json.fromJson(jsonstr, fooType);
-		return fromJson;
+		Gson json = new Gson();
+		String result = json.toJson(that, fooType);
+		return result;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Recipe> desjsonifyList(String jsonstr) {
+		Gson json = new GsonBuilder().serializeNulls().create();
+		Type fooType = new TypeToken<Recipe>() {}.getType();
+		List<Map> fromJson = json.fromJson(jsonstr, fooType);
+		List<Recipe> resultList = new ArrayList<Recipe>();
+		for(Map map:fromJson){
+		       String tmpJson = json.toJson(map, fooType);
+		       resultList.add(desjsonify(tmpJson));
+		    }
+		return resultList;
 	}
 	
 	private String sendRequest(String handlerArguments) throws Exception {

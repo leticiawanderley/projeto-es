@@ -29,3 +29,5 @@ android-client/MaoNaMassa/proguard/
 
 # Log Files
 *.log
+
+server/.idea/

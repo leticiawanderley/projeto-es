@@ -2,7 +2,11 @@ import webapp2
 from google.appengine.ext import db
 
 class User(db.Model):
+    name = db.StringProperty(required=True)
     email = db.EmailProperty(required=True)
+    id = db.StringProperty(required=True)
+    verified_email = db.BooleanProperty(required=True)
+    access_token = db.StringProperty(required=True)
 
 
 class Recipe(db.Model):

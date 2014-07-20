@@ -6,8 +6,10 @@
     <string name="button_send">Enviar</string>
     <string name="action_settings">Opções</string>
     <string name="action_add_recipe">Nova Receita</string>
+    <string name="action_save_recipe">Salvar</string>
     <string name="title_activity_main">Atividade Principal</string>
-    <string name="title_activity_display_message">MyMessage</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_add_recipe">Adicionar Receita</string>
+    <string name="title_recipe">Nome da receita</string>
+    <string name="time_prepare">Tempo de Preparo</string>
 
 </resources>

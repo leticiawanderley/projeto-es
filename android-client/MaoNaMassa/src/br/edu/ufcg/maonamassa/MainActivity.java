@@ -44,7 +44,8 @@ public class MainActivity extends ActionBarActivity {
 
 
 	private void addRecipe() {
-		// TODO Auto-generated method stub
+		Intent intent = new Intent(this, AddRecipeActivity.class);
+	    startActivity(intent);
 		
 	}
 

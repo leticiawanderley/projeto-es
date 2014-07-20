@@ -23,8 +23,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="br.edu.ufcg.maonamassa.DisplayMessageActivity"
-            android:label="@string/title_activity_display_message"
+            android:name="br.edu.ufcg.maonamassa.AddRecipeActivity"
+            android:label="@string/title_activity_add_recipe"
             android:parentActivityName="br.edu.ufcg.maonamassa.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

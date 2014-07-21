@@ -1,9 +1,14 @@
 package br.edu.ufcg.maonamassa;
 
+import br.edu.ufcg.maonamassa.AddRecipeActivity.PlaceholderFragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 
 public class SeeRecipeActivity extends ActionBarActivity {
 
@@ -11,7 +16,10 @@ public class SeeRecipeActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_colecao);
-
+		if (savedInstanceState == null) {
+			getSupportFragmentManager().beginTransaction()
+					.add(R.id.container_ver_receita, new PlaceholderFragment()).commit();
+		}
 		
 	}
 
@@ -35,5 +43,17 @@ public class SeeRecipeActivity extends ActionBarActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	
+	public static class PlaceholderFragment extends Fragment {
+
+		public PlaceholderFragment() {
+		}
+
+		@Override
+		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+				Bundle savedInstanceState) {
+			View rootView = inflater.inflate(R.layout.see_recipe_fragment, container,
+					false);
+			return rootView;
+		}
+	}
 }

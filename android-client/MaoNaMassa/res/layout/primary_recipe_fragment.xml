@@ -14,13 +14,4 @@
         android:hint="@string/title_recipe"
         android:inputType="textCapWords|textPersonName" />
 
-    <EditText
-        android:id="@+id/new_time_prepare"
-        android:layout_weight="100"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/time_prepare"
-	    android:inputType="textCapWords|textPersonName" />
-    
-
 </LinearLayout>

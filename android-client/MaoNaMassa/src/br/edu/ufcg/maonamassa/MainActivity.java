@@ -7,15 +7,55 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import br.edu.ufcg.maonamassa.models.Recipe;
+import br.edu.ufcg.maonamassa.models.User;
 
 public class MainActivity extends ActionBarActivity {
 	
+	
+	private ListView recipesView;
+	
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        // LISTING THE RECIPES
+        recipesView = (ListView) findViewById(R.id.listView1);
+        
+        final List<Recipe> listOfRecipes = new ArrayList<Recipe>();
+        User user = new User(23223L, "joopeeds@gmail.com", "Joao Pedro", "3782392jadoasjhdks293823");
+		Recipe that = new Recipe(121893792L, "teste", user);
+        listOfRecipes.add(that);
+        listOfRecipes.add(that);
+        listOfRecipes.add(that);
+        listOfRecipes.add(that);
+        listOfRecipes.add(that);
+        listOfRecipes.add(that);
+        listOfRecipes.add(that);
+        listOfRecipes.add(that);
+        listOfRecipes.add(that);
+        listOfRecipes.add(that);
+        
+        LazyAdapter recipeAdapter = new LazyAdapter(this, listOfRecipes);
+        recipesView.setAdapter(recipeAdapter); 
+        //TODO Fazer essa merda funcionar
+        recipesView.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+					seeRecipeDetails(listOfRecipes.get(position));
+				
+			}
+		});
     }
 
 
@@ -45,6 +85,12 @@ public class MainActivity extends ActionBarActivity {
 
 	private void addRecipe() {
 		Intent intent = new Intent(this, AddRecipeActivity.class);
+	    startActivity(intent);
+		
+	}
+	
+	private void seeRecipeDetails(Recipe recipe) {
+		Intent intent = new Intent(this, SeeRecipeActivity.class);
 	    startActivity(intent);
 		
 	}

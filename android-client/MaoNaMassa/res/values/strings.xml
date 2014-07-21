@@ -11,5 +11,8 @@
     <string name="title_activity_add_recipe">Adicionar Receita</string>
     <string name="title_recipe">Nome da receita</string>
     <string name="time_prepare">Tempo de Preparo</string>
+    <string name="receita_1">Receita 1</string>
+    <string name="autor_1">Criador 1</string>
+    <string name="action_add_colecao">Adicionar à coleção</string>
 
 </resources>

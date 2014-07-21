@@ -87,8 +87,7 @@ public class Recipe extends Storable<Recipe> {
 
 	@Override
 	public String toString() {
-		return "Recipe [id=" + id + ", name=" + name + ", author=" + author
-				+ ", ingredients=" + ingredients + ", steps=" + steps + "]";
+		return  name + "\ncreated by " + author;
 	}
 
 	@Override

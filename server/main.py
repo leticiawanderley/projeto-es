@@ -135,11 +135,21 @@ class SearchHandler(webapp2.RequestHandler):
 
     def get(self):
         all = Recipe.all()
+        recipes_list = []
         for recipe in all:
-            self.response.write(">>>" + recipe.name + " " + recipe.author.email + " " + recipe.author.name + "<br>")
+            recipe_dict = {"id": recipe.key().id(), "name": recipe.name}
+            user_dict = {"id": recipe.author.key().id(), "email": recipe.author.email, "name": recipe.author.name}
+            recipe_dict["author"] = user_dict
+            recipe_dict["ingredients"] = recipe.ingredients
+            steps_list = []
             for step in sorted(list(recipe.steps), key=lambda x: x.order, reverse=True):
-                self.response.write(">>>>>>>" + step.description + " " + str(step.time) + "<br>")
-            self.response.write("========<br>")
+                step_dict = {"id": step.key().id(), "description": step.description, "time": step.time}
+                steps_list.append(step_dict)
+            recipe_dict["steps"] = steps_list
+
+            recipes_list.append(recipe_dict)
+        self.response.write(json.dumps(recipes_list))
+
 
 
 

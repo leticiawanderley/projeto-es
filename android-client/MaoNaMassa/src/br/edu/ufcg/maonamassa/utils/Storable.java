@@ -1,9 +1,19 @@
 package br.edu.ufcg.maonamassa.utils;
 
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.StatusLine;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 import br.edu.ufcg.maonamassa.models.User;
 
@@ -20,9 +30,7 @@ import com.google.gson.*;
  *
  * @param <Recipe>
  */
-/*
- * 
- */
+
 
 public abstract class Storable<Recipe> {
 	
@@ -81,7 +89,21 @@ public abstract class Storable<Recipe> {
 		stringBuilder.append(handlerArguments);
 		String url = stringBuilder.toString();
 		// TODO Envia o request para o server com os argumentos
-		return HttpURLConnection.sendGet(url);
+		
+		HttpClient httpclient = new DefaultHttpClient();
+	    HttpResponse response = httpclient.execute(new HttpGet(url));
+	    StatusLine statusLine = response.getStatusLine();
+	    if(statusLine.getStatusCode() == HttpStatus.SC_OK){
+	        ByteArrayOutputStream out = new ByteArrayOutputStream();
+	        response.getEntity().writeTo(out);
+	        out.close();
+	        String responseString = out.toString();
+	        return responseString;
+	    } else{
+	        //Closes the connection.
+	        response.getEntity().getContent().close();
+	        throw new IOException(statusLine.getReasonPhrase());
+	    }
 	}
 
 	public void update(User user) throws Exception{
@@ -109,7 +131,11 @@ public abstract class Storable<Recipe> {
 		sendRequest(handlerArguments);
 	}
 	
-	public List<Recipe> search(StorableQuery query) throws Exception{
+	/*
+	 * This method doesn't work for Android version above 3.0
+	 */
+	@Deprecated
+	public List<Recipe> search(StorableQuery query) throws Exception {
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append(Routes.SEARCH_ROUTE + "?");
 		stringBuilder.append("where=" + query.getWhere());
@@ -117,8 +143,13 @@ public abstract class Storable<Recipe> {
 		stringBuilder.append("desc=" + desc);
 		stringBuilder.append("limit=" + query.getLimit());
 		String handlerArguments = stringBuilder.toString();
-		String result = sendRequest(handlerArguments);
+		String result = null;
+ 
+		result = sendRequest(handlerArguments);
 		return desjsonifyList(result);
 	}
+	
+	
+	
 	
 }

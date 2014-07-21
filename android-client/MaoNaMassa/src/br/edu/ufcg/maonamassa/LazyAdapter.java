@@ -23,20 +23,25 @@ public class LazyAdapter extends BaseAdapter {
         activity = a;
         data=your_array_list;
         inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        
     }
  
     public int getCount() {
         return data.size();
     }
  
-    public Object getItem(int position) {
-        return position;
+    public Recipe getItem(int position) {
+        return data.get(position);
     }
  
     public long getItemId(int position) {
         return position;
     }
  
+    
+    
+    
+    
     @SuppressLint("InflateParams")
 	public View getView(int position, View convertView, ViewGroup parent) {
         View vi=convertView;

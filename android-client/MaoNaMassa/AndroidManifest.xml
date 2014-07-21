@@ -8,8 +8,8 @@
         android:minSdkVersion="10"
         android:targetSdkVersion="21" />
     
-    <permission android:name="android.permission.INTERNET"></permission>
-
+	<uses-permission android:name="android.permission.INTERNET" />
+	
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -40,6 +40,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.edu.ufcg.maonamassa.MainActivity" />
         </activity>
+        <activity
+            android:name="br.edu.ufcg.maonamassa.LoginActivity"
+            android:label="@string/login_activity"
+            android:parentActivityName="br.edu.ufcg.maonamassa.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.edu.ufcg.maonamassa.MainActivity" />
+        </activity>
+        
     </application>
 
 </manifest>

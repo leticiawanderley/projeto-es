@@ -7,6 +7,7 @@
     <string name="action_settings">Opções</string>
     <string name="action_save_recipe">Salvar</string>
     <string name="action_add_recipe">Adicionar receita</string>
+    <string name="action_login">Fazer Login</string>
     <string name="title_activity_main">Atividade Principal</string>
     <string name="title_activity_add_recipe">Adicionar Receita</string>
     <string name="title_activity_see_recipe">Ver Receita</string>
@@ -15,5 +16,6 @@
     <string name="receita_1">Receita 1</string>
     <string name="autor_1">Criador 1</string>
     <string name="action_add_colecao">Adicionar à coleção</string>
+    <string name="login_activity">Fazendo login</string>
 
 </resources>

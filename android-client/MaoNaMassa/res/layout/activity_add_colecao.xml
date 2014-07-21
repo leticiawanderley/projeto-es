@@ -4,4 +4,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="br.edu.ufcg.maonamassa.SeeRecipeActivity"
+<<<<<<< HEAD
     tools:ignore="MergeRootFrame" />
+=======
+    tools:ignore="MergeRootFrame" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Large Text"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
+    </LinearLayout>
+
+</FrameLayout>
+>>>>>>> e86d4c6d04498fe0fd4b19f64c4ea22783d986db

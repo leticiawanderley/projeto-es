@@ -1,6 +1,7 @@
 package br.edu.ufcg.maonamassa;
 
-import br.edu.ufcg.maonamassa.AddRecipeActivity.PlaceholderFragment;
+import br.edu.ufcg.maonamassa.models.Recipe;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
@@ -9,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 public class SeeRecipeActivity extends ActionBarActivity {
 
@@ -21,6 +23,15 @@ public class SeeRecipeActivity extends ActionBarActivity {
 					.add(R.id.container_ver_receita, new PlaceholderFragment()).commit();
 		}
 		
+		Intent i = getIntent();
+		Recipe recipe = new Recipe(0L, "NULL", null);
+		recipe = recipe.desjsonify(i.getStringExtra("Recipe"));
+		
+		TextView title = (TextView)findViewById(R.id.textView1); // title
+        TextView author = (TextView)findViewById(R.id.textView2); // author name
+        title.setText(recipe.getName());
+        author.setText(recipe.getAuthor().getName());
+
 	}
 
 	@Override

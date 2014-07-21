@@ -2,6 +2,7 @@ package br.edu.ufcg.maonamassa;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -10,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
@@ -59,6 +61,9 @@ public class MainActivity extends ActionBarActivity {
         case R.id.action_add_recipe:
         	addRecipe();
         	return true;
+        case R.id.action_login:
+        	login();
+        	return true;
         case R.id.action_settings:
             openSettings();
             return true;
@@ -66,6 +71,16 @@ public class MainActivity extends ActionBarActivity {
             return super.onOptionsItemSelected(item);
         }
     }
+
+
+	private void login() {
+		Intent intent = new Intent(this, LoginActivity.class);
+	    startActivity(intent);
+		 
+		// Uri uri = Uri.parse("http://mao-na-massa.appspot.com/login");
+		 //Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+		 //startActivity(intent);
+	}
 
 
 	private void addRecipe() {

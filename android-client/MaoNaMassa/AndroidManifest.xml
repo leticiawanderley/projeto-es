@@ -40,6 +40,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.edu.ufcg.maonamassa.MainActivity" />
         </activity>
+        <activity
+            android:name="br.edu.ufcg.maonamassa.LoginActivity"
+            android:label="@string/login_activity"
+            android:parentActivityName="br.edu.ufcg.maonamassa.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.edu.ufcg.maonamassa.MainActivity" />
+        </activity>
+        
     </application>
 
 </manifest>

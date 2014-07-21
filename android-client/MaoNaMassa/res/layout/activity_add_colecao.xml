@@ -1,14 +1,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-<<<<<<< HEAD
     android:id="@+id/container_ver_receita"
-=======
->>>>>>> e562ce58a900d2fe994080311a7dd60a1af40f5a
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="br.edu.ufcg.maonamassa.SeeRecipeActivity"
     tools:ignore="MergeRootFrame" />
-<<<<<<< HEAD
-=======
-
->>>>>>> e562ce58a900d2fe994080311a7dd60a1af40f5a

@@ -30,7 +30,7 @@ public class StorableTest extends TestCase {
 
 	public void testRecipe() {
 		
-		System.out.println(that.jsonify().replaceAll("\"", "\\\""));
+		//System.out.println(that.jsonify().replaceAll("\"", "\\\""));
 		assertEquals("{\"id\":121893792,\"name\":\"teste\",\"author\":{\"id\":23223,\"email\":\"joopeeds@gmail.com\",\"name\":\"Joao Pedro\",\"accessToken\":\"3782392jadoasjhdks293823\",\"book\":{\"id\":null,\"recipes\":[]}},\"ingredients\":[\"Chocolate\",\"Melancia\",\"Leite\"],\"steps\":[{\"id\":null,\"description\":\"Cortar melancia\",\"time\":0.0,\"annex\":null},{\"id\":null,\"description\":\"Cozinhar tudo\",\"time\":20.0,\"annex\":null}]}",that.jsonify());
 		Recipe ok = that.desjsonify("{\"id\":121893792,\"name\":\"teste\",\"author\":{\"id\":23223,\"email\":\"joopeeds@gmail.com\",\"name\":\"Joao Pedro\",\"accessToken\":\"3782392jadoasjhdks293823\",\"book\":{\"id\":null,\"recipes\":[]}},\"ingredients\":[\"Chocolate\",\"Melancia\",\"Leite\"],\"steps\":[{\"id\":null,\"description\":\"Cortar melancia\",\"time\":0.0,\"annex\":null},{\"id\":null,\"description\":\"Cozinhar tudo\",\"time\":20.0,\"annex\":null}]}");
 		assertEquals("teste",ok.getName());
@@ -48,11 +48,19 @@ public class StorableTest extends TestCase {
 	public void testListRecipe(){
 		List<Recipe> total = new ArrayList<Recipe>();
 		total.add(that);
+		
 		String jsonstr = that.jsonifyList(total);
+		
 		List<Recipe> result = that.desjsonifyList(jsonstr);
 		assertEquals(result.size(), total.size());
 		assertEquals(total, result);
 		
+		
+		
+	}
+	public void testSearch() throws Exception{
+		List<Recipe> oi = that.search(new StorableQuery());
+		System.out.println(oi.get(0).getSteps());
 		
 		
 	}

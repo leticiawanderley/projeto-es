@@ -1,8 +1,11 @@
 package br.edu.ufcg.maonamassa;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,6 +19,9 @@ import java.util.List;
 
 import br.edu.ufcg.maonamassa.models.Recipe;
 import br.edu.ufcg.maonamassa.models.User;
+import br.edu.ufcg.maonamassa.utils.HttpURLCon;
+import br.edu.ufcg.maonamassa.utils.Routes;
+import br.edu.ufcg.maonamassa.utils.StorableQuery;
 
 public class MainActivity extends ActionBarActivity {
 	
@@ -30,32 +36,10 @@ public class MainActivity extends ActionBarActivity {
         
         // LISTING THE RECIPES
         recipesView = (ListView) findViewById(R.id.listView1);
-        
-        final List<Recipe> listOfRecipes = new ArrayList<Recipe>();
-        User user = new User(23223L, "joopeeds@gmail.com", "Joao Pedro", "3782392jadoasjhdks293823");
-		Recipe that = new Recipe(121893792L, "teste", user);
-        listOfRecipes.add(that);
-        listOfRecipes.add(that);
-        listOfRecipes.add(that);
-        listOfRecipes.add(that);
-        listOfRecipes.add(that);
-        listOfRecipes.add(that);
-        listOfRecipes.add(that);
-        listOfRecipes.add(that);
-        listOfRecipes.add(that);
-        listOfRecipes.add(that);
-        
-        LazyAdapter recipeAdapter = new LazyAdapter(this, listOfRecipes);
-        recipesView.setAdapter(recipeAdapter); 
-        //TODO Fazer essa merda funcionar
-        recipesView.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-					seeRecipeDetails(listOfRecipes.get(position));
-				
-			}
-		});
+		
+		new HttpAsyncTask(this).execute();
+	    
+       
     }
 
 
@@ -91,6 +75,7 @@ public class MainActivity extends ActionBarActivity {
 	
 	private void seeRecipeDetails(Recipe recipe) {
 		Intent intent = new Intent(this, SeeRecipeActivity.class);
+		intent.putExtra("Recipe", recipe.jsonify());
 	    startActivity(intent);
 		
 	}
@@ -101,6 +86,40 @@ public class MainActivity extends ActionBarActivity {
 		
 	}
 
+private class HttpAsyncTask extends AsyncTask<String, Void, String> {
+		
+		Activity that;
+		
+		public HttpAsyncTask(Activity that) {
+			this.that = that;
+		}
+		
+	    @Override
+	    protected String doInBackground(String... urls) {
+	        return HttpURLCon.GET(Routes.SERVER_URL + "/" + Routes.SEARCH_ROUTE);
+	    }
+	    // onPostExecute displays the results of the AsyncTask.
+	    @Override
+	    protected void onPostExecute(String result) {
+	        //Toast.makeText(getBaseContext(), "Received!", Toast.LENGTH_LONG).show();
+	        Recipe recipe = new Recipe(0L, "NULL", null);
+	        List<Recipe> listOfRecipes = recipe.desjsonifyList(result);
+	        
+	        final LazyAdapter recipeAdapter = new LazyAdapter(that, listOfRecipes);
+	        recipesView.setAdapter(recipeAdapter); 
+	        recipesView.setOnItemClickListener(new OnItemClickListener() {
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view,
+						int position, long id) {
+					   
+						seeRecipeDetails( recipeAdapter.getItem(position));
+					
+				}
+			});
+	   }
+	}
+	
+	
 
 
 

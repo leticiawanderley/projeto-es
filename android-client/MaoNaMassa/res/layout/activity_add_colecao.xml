@@ -1,14 +1,29 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-<<<<<<< HEAD
     android:id="@+id/container_ver_receita"
-=======
->>>>>>> e562ce58a900d2fe994080311a7dd60a1af40f5a
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="br.edu.ufcg.maonamassa.SeeRecipeActivity"
-    tools:ignore="MergeRootFrame" />
-<<<<<<< HEAD
-=======
+    tools:ignore="MergeRootFrame" >
 
->>>>>>> e562ce58a900d2fe994080311a7dd60a1af40f5a
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Large Text"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
+    </LinearLayout>
+
+</FrameLayout>

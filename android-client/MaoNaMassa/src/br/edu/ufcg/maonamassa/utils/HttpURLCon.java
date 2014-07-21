@@ -21,9 +21,13 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
-import android.net.ConnectivityManager;
 import android.util.Log;
  
+/***
+ * Class used to connect the App with the Server
+ * @author JoãoPedro
+ *
+ */
 public class HttpURLCon {
  
 	private final static String USER_AGENT = "Mozilla/5.0";

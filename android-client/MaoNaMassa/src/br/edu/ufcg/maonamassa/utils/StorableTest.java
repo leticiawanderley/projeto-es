@@ -59,6 +59,7 @@ public class StorableTest extends TestCase {
 		
 	}
 	public void testSearch() throws Exception{
+		@SuppressWarnings("deprecation")
 		List<Recipe> oi = that.search(new StorableQuery());
 		System.out.println(oi.get(0).getSteps());
 		

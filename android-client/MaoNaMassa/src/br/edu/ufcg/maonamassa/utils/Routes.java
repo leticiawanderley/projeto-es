@@ -1,5 +1,10 @@
 package br.edu.ufcg.maonamassa.utils;
 
+/***
+ * Constants used for Server Connections
+ * @author JoãoPedro
+ *
+ */
 public class Routes {
 	public final static String SERVER_URL = "https://mao-na-massa.appspot.com";
 	public final static String CREATE_ROUTE = "create";

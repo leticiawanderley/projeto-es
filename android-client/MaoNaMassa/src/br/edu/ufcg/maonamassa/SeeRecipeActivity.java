@@ -1,6 +1,5 @@
 package br.edu.ufcg.maonamassa;
 
-import br.edu.ufcg.maonamassa.AddRecipeActivity.PlaceholderFragment;
 import br.edu.ufcg.maonamassa.models.Recipe;
 import android.content.Intent;
 import android.os.Bundle;

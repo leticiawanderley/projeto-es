@@ -23,6 +23,7 @@ import br.edu.ufcg.maonamassa.utils.HttpURLCon;
 import br.edu.ufcg.maonamassa.utils.Routes;
 import br.edu.ufcg.maonamassa.utils.StorableQuery;
 
+@SuppressWarnings("unused")
 public class MainActivity extends ActionBarActivity {
 	
 	

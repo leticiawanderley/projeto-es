@@ -1,5 +1,11 @@
 package br.edu.ufcg.maonamassa.utils;
 
+/***
+ * Class to construct a pretty query
+ * Used for search Recipes in the server
+ * @author JoãoPedro
+ *
+ */
 public class StorableQuery {
 
 	private String order;

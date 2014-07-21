@@ -1,16 +1,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context="br.edu.ufcg.maonamassa.AddRecipeActivity$PlaceholderFragment" >
-
-<<<<<<< HEAD
-=======
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
 
         <TextView
             android:id="@+id/textView1"
@@ -21,7 +14,6 @@
             android:text="Nome"
             android:textSize="15sp" />
         
->>>>>>> e86d4c6d04498fe0fd4b19f64c4ea22783d986db
         <EditText
             android:id="@+id/title_new_recipe"
             android:layout_width="match_parent"
@@ -30,22 +22,13 @@
             android:hint="@string/title_recipe"
             android:inputType="textCapWords|textPersonName" />
 
-<<<<<<< HEAD
-   </LinearLayout>
-
-=======
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5sp"
-            android:text="Tempo de Preparo" />
+            android:text="@string/Tempo_de_Preparo" />
        
         <EditText
             android:id="@+id/new_time_prepare"
@@ -53,14 +36,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="0.0"
-            android:inputType="numberSigned|textCapWords|textPersonName" >
+            android:inputType="numberSigned|textCapWords|textPersonName" />
 
-        <requestFocus />
-    	</EditText>
 
-    </LinearLayout>
-
-    
 
 </LinearLayout>
->>>>>>> e86d4c6d04498fe0fd4b19f64c4ea22783d986db

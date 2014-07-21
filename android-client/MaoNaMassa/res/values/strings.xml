@@ -17,5 +17,6 @@
     <string name="autor_1">Criador 1</string>
     <string name="action_add_colecao">Adicionar à coleção</string>
     <string name="login_activity">Fazendo login</string>
+     <string name="Tempo_de_Preparo">Tempo de Preparo</string>
 
 </resources>

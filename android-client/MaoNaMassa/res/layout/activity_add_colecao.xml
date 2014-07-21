@@ -4,9 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="br.edu.ufcg.maonamassa.SeeRecipeActivity"
-<<<<<<< HEAD
-    tools:ignore="MergeRootFrame" />
-=======
     tools:ignore="MergeRootFrame" >
 
     <LinearLayout
@@ -30,4 +27,3 @@
     </LinearLayout>
 
 </FrameLayout>
->>>>>>> e86d4c6d04498fe0fd4b19f64c4ea22783d986db

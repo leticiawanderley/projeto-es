@@ -14,6 +14,7 @@ public class StorableTest extends TestCase {
 	List<String> ing;
 	List<String> exp;
 	
+	@Override
 	protected void setUp() throws Exception {
 		User user = new User(23223L, "joopeeds@gmail.com", "Joao Pedro", "3782392jadoasjhdks293823");
 		that = new Recipe(121893792L, "teste", user);

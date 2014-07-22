@@ -26,15 +26,18 @@ public class LazyAdapter extends BaseAdapter {
         
     }
  
-    public int getCount() {
+    @Override
+	public int getCount() {
         return data.size();
     }
  
-    public Recipe getItem(int position) {
+    @Override
+	public Recipe getItem(int position) {
         return data.get(position);
     }
  
-    public long getItemId(int position) {
+    @Override
+	public long getItemId(int position) {
         return position;
     }
  
@@ -42,7 +45,8 @@ public class LazyAdapter extends BaseAdapter {
     
     
     
-    @SuppressLint("InflateParams")
+    @Override
+	@SuppressLint("InflateParams")
 	public View getView(int position, View convertView, ViewGroup parent) {
         View vi=convertView;
         if(convertView==null)

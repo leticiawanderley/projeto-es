@@ -16,6 +16,7 @@ public class TelaBoasVindasActivity extends Activity implements Runnable {
 		h.postDelayed(this, 3000);//aqui é definido o delay do handler em milisegundos
 	}
 
+	@Override
 	public void run(){
 		startActivity(new Intent(this, MainActivity.class));//aqui é iniciada nossa 2 activity
 		finish();//aqui é chamado o método finish pra finalizar a activity atual no caso SplashScreen

@@ -18,5 +18,18 @@
     <string name="action_add_colecao">Adicionar à coleção</string>
     <string name="login_activity">Fazendo login</string>
      <string name="Tempo_de_Preparo">Tempo de Preparo</string>
+	<string name="hello_world">Hello world!</string>
+    <string name="imgdesc">imgdesc</string>
+    
+    
+    <string-array name="titles">
+        <item>Buscar receitas</item>
+        <item>Adicionar Receita</item>
+    </string-array>
 
+    <array name="icons">
+        <item>@drawable/ic_action_search</item>
+        <item>@drawable/ic_action_new</item>
+    </array>
+    
 </resources>

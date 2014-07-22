@@ -1,6 +1,7 @@
 package br.edu.ufcg.maonamassa;
 
 import br.edu.ufcg.maonamassa.utils.Routes;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -16,8 +17,10 @@ public class LoginActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_login);
 		 WebView webview = (WebView) findViewById(R.id.webView1);
 		 webview.setWebViewClient(new WebViewClient());
+		 ProgressDialog dialog = ProgressDialog.show(LoginActivity.this, "", 
+	                "Abrindo página de login", true);
 		 webview.loadUrl(Routes.SERVER_URL + "/" + Routes.LOGIN_ROUTE);
-		
+		 dialog.cancel();
 	}
 
 	@Override

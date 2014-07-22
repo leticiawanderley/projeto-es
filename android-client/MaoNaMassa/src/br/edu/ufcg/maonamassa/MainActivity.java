@@ -101,13 +101,7 @@ public class MainActivity extends ActionBarActivity {
         	  
         	  
         	  
-        	  
-
-        	  
-        
-        /*// LISTING THE RECIPES
-        
-		*/
+      
        
     }
 
@@ -236,12 +230,6 @@ public class MainActivity extends ActionBarActivity {
 		
 	}
 	
-	private void seeRecipeDetails(Recipe recipe) {
-		Intent intent = new Intent(this, SeeRecipeActivity.class);
-		intent.putExtra("Recipe", recipe.jsonify());
-	    startActivity(intent);
-		
-	}
 
 
 	private void openSettings() {

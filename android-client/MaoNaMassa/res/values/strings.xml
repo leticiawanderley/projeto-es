@@ -6,7 +6,7 @@
     <string name="button_send">Enviar</string>
     <string name="action_settings">Opções</string>
     <string name="action_save_recipe">Salvar</string>
-    <string name="action_add_recipe">Adicionar receita</string>
+    <string name="action_add_recipe"></string>
     <string name="action_login">Fazer Login</string>
     <string name="title_activity_main">Atividade Principal</string>
     <string name="title_activity_add_recipe">Adicionar Receita</string>
@@ -20,7 +20,7 @@
      <string name="Tempo_de_Preparo">Tempo de Preparo</string>
 	<string name="hello_world">Hello world!</string>
     <string name="imgdesc">imgdesc</string>
-    
+    <string name="search_title">Buscar </string>
     
     <string-array name="titles">
         <item>Buscar receitas</item>

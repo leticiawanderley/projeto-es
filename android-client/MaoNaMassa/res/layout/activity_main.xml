@@ -17,7 +17,7 @@
               
 
           </FrameLayout>
-
+		
     <!-- The navigation drawer list --> 
          <ListView
              android:id="@+id/slider_list"

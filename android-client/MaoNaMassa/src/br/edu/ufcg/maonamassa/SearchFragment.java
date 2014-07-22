@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -70,7 +71,7 @@ public class SearchFragment extends Fragment {
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
 					   
-						//seeRecipeDetails( recipeAdapter.getItem(position));
+						seeRecipeDetails( recipeAdapter.getItem(position));
 					
 				}
 			});
@@ -78,6 +79,12 @@ public class SearchFragment extends Fragment {
 	   }
 	}
 	
+    private void seeRecipeDetails(Recipe recipe) {
+		Intent intent = new Intent(mainActivity, SeeRecipeActivity.class);
+		intent.putExtra("Recipe", recipe.jsonify());
+	    startActivity(intent);
+		
+	}
 	
 
 }

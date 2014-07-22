@@ -23,7 +23,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView" />
-
+		 <ListView
+             android:id="@+id/ingredient_list"
+             android:layout_width="240dp"
+             android:layout_height="match_parent"
+             android:layout_gravity="start"
+             android:background="#ffffff"
+             android:choiceMode="none"
+             android:divider="@android:color/transparent"
+             android:dividerHeight="0dp" />
     </LinearLayout>
-
+	
 </FrameLayout>

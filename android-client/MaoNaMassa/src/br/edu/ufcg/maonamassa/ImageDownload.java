@@ -17,7 +17,7 @@ import android.widget.ImageView;
 import br.edu.ufcg.maonamassa.models.Recipe;
 
 
-class ImageDownload extends AsyncTask<String, Void, String> {
+class ImageDownload extends AsyncTask<String, Void, Bitmap> {
 	
 	ImageView image;
 	
@@ -26,14 +26,14 @@ class ImageDownload extends AsyncTask<String, Void, String> {
 	}
 	
     @Override
-    protected String doInBackground(String... urls) {
-    	image.setImageBitmap(downloadImage(urls[0]));
-        return "";
+    protected Bitmap doInBackground(String... urls) {
+    	
+        return downloadImage(urls[0]);
     }
     // onPostExecute displays the results of the AsyncTask.
     @Override
-    protected void onPostExecute(String result) {
-       
+    protected void onPostExecute(Bitmap result) {
+    	image.setImageBitmap(result);
        
    }
     

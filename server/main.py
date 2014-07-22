@@ -21,6 +21,7 @@ from google.appengine.api import urlfetch
 
 CLIENT_ID = "618183613681-r5m5eo8c9hkqm50ups89cic0vdrt7jmf.apps.googleusercontent.com"
 CLIENT_SECRET = "zzSIvlbFKEEm0f4zlZMpkBVx"
+SERVER_URL = "https://mao-na-massa.appspot.com"
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
@@ -42,7 +43,7 @@ class CodeHandler(webapp2.RequestHandler):
               "code": self.request.get("code"),
               "client_id": CLIENT_ID,
               "client_secret": CLIENT_SECRET,
-              "redirect_uri": "https://mao-na-massa.appspot.com/code"
+              "redirect_uri": SERVER_URL+"/code"
             }
             form_data = urllib.urlencode(form_fields)
             result = urlfetch.fetch(url="https://accounts.google.com/o/oauth2/token",
@@ -123,7 +124,7 @@ class LoginHandler(webapp2.RequestHandler):
             state = ""
             self.redirect(
                 "https://accounts.google.com/o/oauth2/auth?scope=email%20profile&" +
-                "state=%s&redirect_uri=https://mao-na-massa.appspot.com/code&" % state +
+                "state=%s&redirect_uri="+SERVER_URL+"/code&" % state +
                 "response_type=code&client_id=618183613681-r5m5eo8c9hkqm50ups89cic0vdrt7jmf.apps.googleusercontent.com")
 
 

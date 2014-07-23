@@ -1,16 +1,19 @@
 package br.edu.ufcg.maonamassa.models;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 public class User {
 	
 	
 
-	private Long id;
+	private String id;
 	
 	private String email;
 	
 	private String name;
 	
-	
+	private String photo;
 
 	private String accessToken;
 	
@@ -19,10 +22,11 @@ public class User {
 	/*
 	 * Constructor for the current user. After logged in.
 	 */
-	public User(Long id, String email, String name, String accessToken) {
+	public User(String id, String email, String name, String photo, String accessToken) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
+		this.photo = photo;
 		this.accessToken = accessToken;
 		this.book = new RecipeBook();
 	}
@@ -30,13 +34,14 @@ public class User {
 	/*
 	 * Constructor for other users in the system
 	 */
-	public User(Long id, String email, String name) {
+	public User(String id, String email, String photo, String name) {
 		this.id = id;
 		this.name = name;
+		this.photo = photo;
 		this.email = email;
 	}
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
@@ -100,6 +105,21 @@ public class User {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	
+	
+	public User desjsonify(String jsonstr) {
+		Gson json = new GsonBuilder().serializeNulls().create();
+		User fromJson =   json.fromJson(jsonstr, this.getClass());
+		return fromJson;
 	}
 	
 	

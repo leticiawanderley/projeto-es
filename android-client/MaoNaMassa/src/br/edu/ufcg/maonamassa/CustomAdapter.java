@@ -1,9 +1,21 @@
 package br.edu.ufcg.maonamassa;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +27,12 @@ public class CustomAdapter extends BaseAdapter {
 
 	Context context;
 	List<RowItem> rowItem;
+	SessionManager session;
 
-	CustomAdapter(Context context, List<RowItem> rowItem) {
+	CustomAdapter(Context context, SessionManager session, List<RowItem> rowItem) {
 		this.context = context;
 		this.rowItem = rowItem;
+		this.session = session;
 	}
 
 
@@ -32,11 +46,16 @@ public class CustomAdapter extends BaseAdapter {
 			}
 			ImageView imgIcon = (ImageView) convertView.findViewById(R.id.userPhoto);
 			TextView txtTitle = (TextView) convertView.findViewById(R.id.userName);
-			new ImageDownload(imgIcon).execute("https://lh6.googleusercontent.com/-AlQuyllLocY/AAAAAAAAAAI/AAAAAAAADsw/Q3EK4Y5bvbs/s120-c/photo.jpg");
+			
+			if(session.getUserDetails().getPhoto() != null)
+				new ImageDownload(imgIcon, session, context).execute();
+
 			RowItem row_pos = rowItem.get(position);
 			// setting the image resource and title
-			
-			txtTitle.setText(row_pos.getTitle());
+			if(session.getUserDetails().getName() != null )
+				txtTitle.setText(session.getUserDetails().getName());
+			else
+				txtTitle.setText("Faca login");
 			
 		} else {
 			
@@ -58,6 +77,9 @@ public class CustomAdapter extends BaseAdapter {
 		return convertView;
 	}
 
+	
+	
+	
 	@Override
 	public int getCount() {
 		return rowItem.size();

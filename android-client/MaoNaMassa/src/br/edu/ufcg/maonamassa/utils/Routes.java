@@ -12,5 +12,6 @@ public class Routes {
 	public final static String DELETE_ROUTE = "delete";
 	public final static String SEARCH_ROUTE = "search";
 	public static final String LOGIN_ROUTE = "login";
+	public static final String LOGOUT_URL = "logout";
 
 }

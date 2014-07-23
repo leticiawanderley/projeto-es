@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.internal.view.menu.MenuView.ItemView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -30,7 +31,7 @@ import br.edu.ufcg.maonamassa.models.Recipe;
 @SuppressLint("NewApi")
 public class MainActivity extends ActionBarActivity {
 	
-	
+	private SessionManager session;
 	private String[] menutitles;
 	private TypedArray menuIcons;
 	private CharSequence mDrawerTitle;
@@ -47,11 +48,13 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        session = new SessionManager(getApplicationContext());
         mTitle = mDrawerTitle = getTitle();
         
         menutitles = getResources().getStringArray(R.array.titles);
         menuIcons = getResources().obtainTypedArray(R.array.icons);
         
+       
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.slider_list);
         
@@ -65,7 +68,7 @@ public class MainActivity extends ActionBarActivity {
 
         menuIcons.recycle();
 
-        adapter = new CustomAdapter(getApplicationContext(), rowItems);
+        adapter = new CustomAdapter(getApplicationContext(), session, rowItems);
 
         mDrawerList.setAdapter(adapter);
         mDrawerList.setOnItemClickListener(new SlideitemListener());
@@ -94,7 +97,7 @@ public class MainActivity extends ActionBarActivity {
 
         	  if (savedInstanceState == null) {
         	       // on first time display view for first nav item
-        	       updateDisplay(0);
+        	       updateDisplay(1);
         	     }
         	 
         	  
@@ -121,7 +124,7 @@ public class MainActivity extends ActionBarActivity {
     private void updateDisplay(int position) {
     	Fragment fragment = null;
     	switch (position) {
-    	case 0:
+    	case 1:
     		fragment = new SearchFragment(MainActivity.this);
     		break;
     	default:
@@ -134,6 +137,7 @@ public class MainActivity extends ActionBarActivity {
             // update selected item and title, then close the drawer
             setTitle(menutitles[position]);
              mDrawerLayout.closeDrawer(mDrawerList);
+            
     	} else {
               // error in creating fragment
               Log.e("MainActivity", "Error in creating fragment");
@@ -155,6 +159,12 @@ public class MainActivity extends ActionBarActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
     	 MenuInflater inflater = getMenuInflater();
     	 inflater.inflate(R.menu.main, menu);
+    	
+         
+         if(session.isLoggedIn()){
+        	 menu.findItem(R.id.action_login).setTitle("Logout");
+         }
+         
     	 return super.onCreateOptionsMenu(menu);
     }
 

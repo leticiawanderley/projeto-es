@@ -16,7 +16,7 @@ public class StorableTest extends TestCase {
 	
 	@Override
 	protected void setUp() throws Exception {
-		User user = new User(23223L, "joopeeds@gmail.com", "Joao Pedro", "3782392jadoasjhdks293823");
+		User user = new User("2223", "joopeeds@gmail.com", "Joao Pedro", "3782392jadoasjhdks293823");
 		that = new Recipe(121893792L, "teste", user);
 		that.addIngredient("Chocolate");
 		that.addIngredient("Melancia");
@@ -60,9 +60,9 @@ public class StorableTest extends TestCase {
 		
 	}
 	public void testSearch() throws Exception{
-		@SuppressWarnings("deprecation")
-		List<Recipe> oi = that.search(new StorableQuery());
-		System.out.println(oi.get(0).getSteps());
+		//@SuppressWarnings("deprecation")
+		//List<Recipe> oi = that.search(new StorableQuery());
+		//System.out.println(oi.get(0).getSteps());
 		
 		
 	}

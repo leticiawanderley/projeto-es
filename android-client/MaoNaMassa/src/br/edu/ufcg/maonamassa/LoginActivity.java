@@ -1,9 +1,17 @@
 package br.edu.ufcg.maonamassa;
 
+import java.io.FileOutputStream;
+
 import br.edu.ufcg.maonamassa.utils.Routes;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
+import android.graphics.Bitmap;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
@@ -11,18 +19,52 @@ import android.webkit.WebViewClient;
 
 public class LoginActivity extends ActionBarActivity {
 
+	
+	SessionManager session;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
-		 WebView webview = (WebView) findViewById(R.id.webView1);
-		 webview.setWebViewClient(new WebViewClient());
-		 ProgressDialog dialog = ProgressDialog.show(LoginActivity.this, "", 
-	                "Abrindo página de login", true);
-		 webview.loadUrl(Routes.SERVER_URL + "/" + Routes.LOGIN_ROUTE);
-		 dialog.cancel();
+		 
+		 session = new SessionManager(getApplicationContext());
+		 
+		 final WebView webview = (WebView) findViewById(R.id.webView1);
+		 if(!session.isLoggedIn()) {
+			 webview.setWebViewClient(new WebViewClient() {
+			        
+				 
+				 @Override
+				    public boolean shouldOverrideUrlLoading(WebView view, String url)
+				    {
+			            if(url.contains("authorized")){
+			            	Log.v("meu", url);
+			            	
+			            	String[] peaces = url.split("\\?");
+			            	String[] args = peaces[1].split("&");
+			            	String token = args[1].split("=")[1];
+			            	String id = args[2].split("=")[1];
+			            	new GetUserInfoTask(session, id, token).execute();
+			            	Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+			        	    startActivity(intent);
+			        		 
+			            }
+				                 
+				        return false;
+				    }
+	
+				   
+			    });
+			 webview.getSettings().setJavaScriptEnabled(true);
+			 webview.loadUrl(Routes.SERVER_URL + "/" + Routes.LOGIN_ROUTE);
+		 } else {
+			new LogoutTask(session, getApplicationContext()).execute();
+         	
+		 }
 	}
 
+	
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 

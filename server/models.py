@@ -5,6 +5,7 @@ class User(db.Model):
     name = db.StringProperty(required=True)
     email = db.EmailProperty(required=True)
     id = db.StringProperty(required=True)
+    photo = db.StringProperty()
     verified_email = db.BooleanProperty(required=True)
     access_token = db.StringProperty(required=True)
 

@@ -10,6 +10,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.webkit.CookieManager;
+import android.webkit.WebView;
 
 
 class LogoutTask extends AsyncTask<String, Void, String> {
@@ -17,10 +19,12 @@ class LogoutTask extends AsyncTask<String, Void, String> {
 	private SessionManager session;
 	private Context context;
 	private ProgressDialog dialog;
+	private WebView wb;
 	
-	public LogoutTask(SessionManager session, Context context) {
+	public LogoutTask(SessionManager session, WebView webview, Context context) {
 		this.session = session;
 		this.context = context;
+		this.wb = webview;
 	}
 	
 	@Override
@@ -38,6 +42,11 @@ class LogoutTask extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
     	session.logoutUser();
+    	wb.clearHistory();
+    	wb.clearCache(true);
+    	wb.clearSslPreferences();
+    	CookieManager cookieManager = CookieManager.getInstance();
+    	cookieManager.removeAllCookie();
     	//dialog.cancel();
     	//Intent intent = new Intent(context, MainActivity.class);
  	    //context.startActivity(intent);

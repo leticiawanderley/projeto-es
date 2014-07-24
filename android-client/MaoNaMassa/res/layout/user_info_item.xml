@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="10dp"
-            android:src="@drawable/mao_na_massa" />
+            android:src="@drawable/ic_launcher" />
     </LinearLayout>
 
 </RelativeLayout>

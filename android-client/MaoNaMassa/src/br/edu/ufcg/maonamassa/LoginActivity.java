@@ -47,7 +47,6 @@ public class LoginActivity extends ActionBarActivity {
 			            	new GetUserInfoTask(session, id, token).execute();
 			            	Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 			        	    startActivity(intent);
-			        		 
 			            }
 				                 
 				        return false;
@@ -58,7 +57,7 @@ public class LoginActivity extends ActionBarActivity {
 			 webview.getSettings().setJavaScriptEnabled(true);
 			 webview.loadUrl(Routes.SERVER_URL + "/" + Routes.LOGIN_ROUTE);
 		 } else {
-			new LogoutTask(session, getApplicationContext()).execute();
+			new LogoutTask(session, webview, getApplicationContext()).execute();
          	
 		 }
 	}

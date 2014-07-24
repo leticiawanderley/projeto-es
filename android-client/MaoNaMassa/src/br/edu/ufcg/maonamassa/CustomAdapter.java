@@ -55,7 +55,7 @@ public class CustomAdapter extends BaseAdapter {
 			if(session.getUserDetails().getName() != null )
 				txtTitle.setText(session.getUserDetails().getName());
 			else
-				txtTitle.setText("Faca login");
+				txtTitle.setText("Mão na Massa");
 			
 		} else {
 			

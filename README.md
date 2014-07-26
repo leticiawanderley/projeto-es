@@ -1,4 +1,4 @@
-Mao Na Massa
+Mão Na Massa App
 ==========
 Dev Repository for the project of Software Engeneering course at Federal University of Campina Grande
 

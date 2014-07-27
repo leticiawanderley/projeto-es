@@ -13,17 +13,20 @@ public class TelaBoasVindasActivity extends Activity implements Runnable {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-	        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-	            WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.splash);
 
 		Handler h = new Handler();
-		h.postDelayed(this, 3000);//aqui é definido o delay do handler em milisegundos
+		h.postDelayed(this, 3000);// aqui ï¿½ definido o delay do handler em
+									// milisegundos
 	}
 
 	@Override
-	public void run(){
-		startActivity(new Intent(this, MainActivity.class));//aqui é iniciada nossa 2 activity
-		finish();//aqui é chamado o método finish pra finalizar a activity atual no caso SplashScreen
+	public void run() {
+		startActivity(new Intent(this, MainActivity.class));// aqui ï¿½ iniciada
+															// nossa 2 activity
+		finish();// aqui ï¿½ chamado o mï¿½todo finish pra finalizar a activity
+					// atual no caso SplashScreen
 	}
 }

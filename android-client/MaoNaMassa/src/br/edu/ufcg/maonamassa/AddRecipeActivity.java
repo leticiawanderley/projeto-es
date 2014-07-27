@@ -1,8 +1,8 @@
 package br.edu.ufcg.maonamassa;
 
-import android.support.v7.app.ActionBarActivity;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -53,8 +53,8 @@ public class AddRecipeActivity extends ActionBarActivity {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.primary_recipe_fragment, container,
-					false);
+			View rootView = inflater.inflate(R.layout.primary_recipe_fragment,
+					container, false);
 			return rootView;
 		}
 	}

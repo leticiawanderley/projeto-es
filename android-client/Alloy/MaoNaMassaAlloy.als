@@ -34,26 +34,20 @@ sig Step{}
 fact fatosSistema {
 	#Sistema = 1
 }
-/**
+
 fact fatosPessoas {
-	all i : Idade | one i.~idadeCliente
-	all c: Cliente, t: Time | lone c.~(clientes.t)
-	all n: Nome | one n.~nomeAdm || one n.~nomeCliente || one n.~nomeFunc
-	all e: Endereco| one e.~endAdm || one e.~endCliente || one e.~endFunc
-	all f: Funcionario | one f.~funcionarios
-	all a: Administrador | one a.~administracao	
-}*/
+	all n: Nome | one n.~nomeUsuario
+}
 
 fact fatosReceitas {
-//	all r : receitas, t : Sistema | receitas.dono in s.usuarios
-//	all l : livros, s : Sistema | l.~livro in s.usuarios
+	all l : Livro | one l.~livro
 }
 
 
 fact traces {
 	init[first]
 	all pre: Time-last | let pos = pre.next |
-		some sm: Sistema, rec: Receita,  u:Usuario |
+		lone sm: Sistema, rec: Receita,  u:Usuario |
 				(addReceita[sm, u, rec, pre, pos]  or
 				cadastraUsuario[sm, u, pre, pos] or addRecNoLivro[sm, u, rec, pre, pos])
 
@@ -68,8 +62,8 @@ fact traces {
 
 pred init[t: Time] {
 	one Sistema
-	no (Sistema.receitas).t
-	no (Sistema.usuarios).t
+	
+	
 }
 // PREDICADOS
 
@@ -93,28 +87,9 @@ pred addRecNoLivro[sm: Sistema, c: Usuario, r: Receita,  t, t': Time] {
 
 
 
-/*
-// ASSERTS
-assert todoAbrigoTemUmAdministrador {
-	all a:Abrigo | one a.administracao
-}
-
-assert todoAbrigoTemPeloMenosUmFuncionario {
-	all a:Abrigo | #a.funcionarios > 0
-}
-
-assert animalAdotadoNaoPertenceANenhumAbrigo{
-	all a:Animal, t:Time, ab:Abrigo, c:Cliente | a in ab.(animaisDoAbrigo.t) => a not in c.(animaisAdotados.t)
-}
-
-check todoAbrigoTemUmAdministrador for 5
-check todoAbrigoTemPeloMenosUmFuncionario for 5
-check animalAdotadoNaoPertenceANenhumAbrigo for 5
-*/
-// main
 pred show[]{}
 
-run show for 5 but  3 Usuario
+run show for 5
 
 //assinaturas (conjuntos e relações)
 //fatos (invariantes)

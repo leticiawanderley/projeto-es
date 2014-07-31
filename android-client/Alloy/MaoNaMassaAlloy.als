@@ -36,7 +36,6 @@ fact fatosSistema {
 
 fact fatosReceitas {
 all l : Livro | one u : Usuario | l = u.livro
-all r : Receita |  one l : Livro | r in ~l.receitasDoLivro
 }
 
 

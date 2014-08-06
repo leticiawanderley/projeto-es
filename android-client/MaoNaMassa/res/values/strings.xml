@@ -21,6 +21,11 @@
 	<string name="hello_world">Hello world!</string>
     <string name="imgdesc">imgdesc</string>
     <string name="search_title">Buscar </string>
+    <string name="add_ingrediente">Add Ingrediente </string>
+    <string name="descricao_ingrediente">Descrição do ingrediente</string>
+    <string name="adicionar">Adicionar</string>
+    <string name="cancel">Cancelar</string>
+    
     
     <string-array name="titles">
         <item>Nome Usuário</item>

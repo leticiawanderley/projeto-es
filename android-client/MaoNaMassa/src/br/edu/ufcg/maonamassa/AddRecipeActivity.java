@@ -1,5 +1,6 @@
 package br.edu.ufcg.maonamassa;
 
+import android.app.DialogFragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
@@ -29,6 +30,11 @@ public class AddRecipeActivity extends ActionBarActivity {
 		getMenuInflater().inflate(R.menu.add_recipe, menu);
 		return true;
 	}
+	
+	public void addIngrediente(View view){
+		DialogFragment dialog = new AddIngredientDialog();
+		dialog.show(getFragmentManager(), "AddIngredientDialog");
+	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -42,6 +48,8 @@ public class AddRecipeActivity extends ActionBarActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
+	
+	
 	/**
 	 * A placeholder fragment containing a simple view.
 	 */

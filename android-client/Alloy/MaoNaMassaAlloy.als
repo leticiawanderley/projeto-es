@@ -35,6 +35,7 @@ fact fatosSistema {
 }
 
 fact fatosReceitas {
+all u : Usuario, t : Time | one s  : Sistema | u in (s.usuarios).t
 all l : Livro | one u : Usuario | l = u.livro
 }
 
@@ -54,7 +55,7 @@ fact traces {
 pred init[t: Time] {
 	one Sistema
 	no (Sistema.receitas).t
-	no (Sistema.usuarios).t
+	no (Livro.receitasDoLivro).t
 }
 // PREDICADOS
 

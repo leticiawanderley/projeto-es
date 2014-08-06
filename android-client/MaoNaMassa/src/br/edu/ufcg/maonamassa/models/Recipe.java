@@ -115,9 +115,4 @@ public class Recipe extends Storable<Recipe> {
 		return true;
 	}
 
-	
-
-	
-	
-	
 }

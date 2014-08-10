@@ -17,8 +17,6 @@ import br.edu.ufcg.maonamassa.models.Recipe;
 
 public class SeeRecipeActivity extends ActionBarActivity {
 
-	private List<IngredientItem> ingredientItems;
-	private IngredientsAdapter adapter;
 	private ListView ingredientsView;
 
 	@Override
@@ -35,8 +33,6 @@ public class SeeRecipeActivity extends ActionBarActivity {
 		Intent i = getIntent();
 		Recipe recipe = new Recipe(0L, "NULL", null);
 		recipe = recipe.desjsonify(i.getStringExtra("Recipe"));
-		recipe.addIngredient("novoIngrediente");
-		recipe.addIngredient("novoIngrediente2");
 		TextView title = (TextView) findViewById(R.id.textView1); // title
 		TextView author = (TextView) findViewById(R.id.textView2); // author
 																	// name

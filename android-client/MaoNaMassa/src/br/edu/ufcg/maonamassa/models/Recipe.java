@@ -58,7 +58,12 @@ public class Recipe extends Storable<Recipe> {
 	}
 
 	public List<String> getIngredients() {
-		return ingredients;
+		if (ingredients != null){
+			return ingredients;
+		}else{
+			return new ArrayList<String>();
+		}
+		
 	}
 
 	public void setIngredients(List<String> ingredients) {

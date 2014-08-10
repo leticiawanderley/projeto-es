@@ -1,7 +1,12 @@
 package br.edu.ufcg.maonamassa;
 
+import java.util.List;
+
+import br.edu.ufcg.maonamassa.models.Recipe;
 import android.app.DialogFragment;
+import android.content.Intent;
 import android.os.Bundle;
+import android.service.textservice.SpellCheckerService.Session;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
@@ -9,18 +14,26 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
 
-public class AddRecipeActivity extends ActionBarActivity {
-
+public class AddRecipeActivity extends ActionBarActivity
+implements AddIngredientDialog.IngredientDialogListener{
+	
+	private Recipe newRecipe = new Recipe(0L, null, null);//manager.getUserDetails());
+	private ListView ingredientsView;
+	private IngredientsAdapter ingredientsAdapter;
+	private String novoIngrediente = "";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_recipe);
-
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
-					.add(R.id.container, new PlaceholderFragment()).commit();
+			.add(R.id.container_add_receita, new PlaceholderFragment()).commit();
 		}
+		
 	}
 
 	@Override
@@ -30,7 +43,7 @@ public class AddRecipeActivity extends ActionBarActivity {
 		getMenuInflater().inflate(R.menu.add_recipe, menu);
 		return true;
 	}
-	
+
 	public void addIngrediente(View view){
 		DialogFragment dialog = new AddIngredientDialog();
 		dialog.show(getFragmentManager(), "AddIngredientDialog");
@@ -48,8 +61,8 @@ public class AddRecipeActivity extends ActionBarActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	
-	
+
+
 	/**
 	 * A placeholder fragment containing a simple view.
 	 */
@@ -65,6 +78,27 @@ public class AddRecipeActivity extends ActionBarActivity {
 					container, false);
 			return rootView;
 		}
+	}
+
+
+
+	@Override
+	public void onDialogPositiveClick(DialogFragment dialog, String ingrediente) {
+		EditText editText = (EditText) findViewById(R.id.new_ingrediente_description);
+		novoIngrediente = editText.getText().toString();
+		if(!(novoIngrediente.trim().length() < 2)){
+			newRecipe.addIngredient(novoIngrediente);
+			ingredientsView = (ListView) findViewById(R.id.new_ingredient_list);
+			ingredientsAdapter = new IngredientsAdapter(this,
+					newRecipe.getIngredients());
+			ingredientsView.setAdapter(ingredientsAdapter);
+		}
+		
+	}
+	@Override
+	public void onDialogNegativeClick(DialogFragment dialog) {
+		dialog.dismiss();
+		
 	}
 
 }

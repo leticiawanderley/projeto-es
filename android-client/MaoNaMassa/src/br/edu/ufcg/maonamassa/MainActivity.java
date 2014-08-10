@@ -106,7 +106,7 @@ public class MainActivity extends ActionBarActivity {
 		Fragment fragment = null;
 		switch (position) {
 		case 1:
-			fragment = new SearchFragment(MainActivity.this);
+			fragment = new SearchFragment();
 			break;
 		default:
 			break;
@@ -209,7 +209,7 @@ public class MainActivity extends ActionBarActivity {
 
 	private void addRecipe() {
 		Intent intent = new Intent(this, AddRecipeActivity.class);
-		startActivity(intent);
+		startActivity(intent);	
 
 	}
 

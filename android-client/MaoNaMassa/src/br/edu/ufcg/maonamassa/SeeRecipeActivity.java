@@ -14,11 +14,13 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 import br.edu.ufcg.maonamassa.models.Recipe;
+import br.edu.ufcg.maonamassa.models.Step;
 
 public class SeeRecipeActivity extends ActionBarActivity {
 
 	private ListView ingredientsView;
-
+	private Recipe recipe;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -31,7 +33,7 @@ public class SeeRecipeActivity extends ActionBarActivity {
 
 		ingredientsView = (ListView) findViewById(R.id.ingredient_list);
 		Intent i = getIntent();
-		Recipe recipe = new Recipe(0L, "NULL", null);
+		recipe = new Recipe(0L, "NULL", null);
 		recipe = recipe.desjsonify(i.getStringExtra("Recipe"));
 		TextView title = (TextView) findViewById(R.id.textView1); // title
 		TextView author = (TextView) findViewById(R.id.textView2); // author
@@ -61,7 +63,18 @@ public class SeeRecipeActivity extends ActionBarActivity {
 		if (id == R.id.action_settings) {
 			return true;
 		}
+		else if (id == R.id.action_botao_mao_na_massa) {
+			iniciaMaoNaMassa();
+			return true;
+		}
+		
 		return super.onOptionsItemSelected(item);
+	}
+
+	private void iniciaMaoNaMassa() {
+		Intent intent = new Intent(this, MaoNaMassaActivity.class);
+		intent.putExtra("Recipe", recipe.jsonify());
+		startActivity(intent);
 	}
 
 	public static class PlaceholderFragment extends Fragment {

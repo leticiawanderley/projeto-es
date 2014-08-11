@@ -16,20 +16,25 @@
     <string name="receita_1">Receita 1</string>
     <string name="autor_1">Criador 1</string>
     <string name="action_add_colecao">Adicionar à coleção</string>
+    <string name="action_photo">Virar</string>
+    <string name="action_info">Virar</string>
+    <string name="action_flip">Virar</string>
+    <string name="action_botao_mao_na_massa">Mão na massa</string>
     <string name="login_activity">Fazendo login</string>
-     <string name="Tempo_de_Preparo">Tempo de Preparo</string>
+    <string name="Tempo_de_Preparo">Tempo de Preparo</string>
 	<string name="hello_world">Hello world!</string>
     <string name="imgdesc">imgdesc</string>
     <string name="search_title">Buscar </string>
-    <string name="add_ingrediente">Add Ingrediente </string>
+    <string name="add_ingrediente">Adicionar Ingrediente </string>
     <string name="descricao_ingrediente">Descrição do ingrediente</string>
     <string name="adicionar">Adicionar</string>
     <string name="cancel">Cancelar</string>
     
     
+    
     <string-array name="titles">
         <item>Nome Usuário</item>
-        <item>Buscar receitas</item>
+        <item>Buscar Receitas</item>
         <item>Adicionar Receita</item>
     </string-array>
 

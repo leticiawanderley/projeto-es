@@ -32,6 +32,11 @@
             
         </activity>
         <activity
+            android:name="br.edu.ufcg.maonamassa.MaoNaMassaActivity"
+            android:label="@string/app_name" >
+            
+        </activity>
+        <activity
             android:name="br.edu.ufcg.maonamassa.AddRecipeActivity"
             android:label="@string/title_activity_add_recipe"
             android:parentActivityName="br.edu.ufcg.maonamassa.MainActivity" >

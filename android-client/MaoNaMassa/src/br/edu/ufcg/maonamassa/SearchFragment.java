@@ -19,15 +19,12 @@ import br.edu.ufcg.maonamassa.models.Recipe;
 import br.edu.ufcg.maonamassa.utils.HttpURLCon;
 import br.edu.ufcg.maonamassa.utils.Routes;
 
-@SuppressLint({ "NewApi", "ValidFragment" })
 public class SearchFragment extends Fragment {
 
 	ListView recipesView;
-	MainActivity mainActivity;
 
-	@SuppressLint("ValidFragment")
-	public SearchFragment(MainActivity mainActivity) {
-		this.mainActivity = mainActivity;
+	
+	public SearchFragment() {
 	}
 
 	@Override
@@ -37,9 +34,9 @@ public class SearchFragment extends Fragment {
 				.inflate(R.layout.fb_fragment, container, false);
 
 		recipesView = (ListView) rootView.findViewById(R.id.listView1);
-		ProgressDialog dialog = ProgressDialog.show(mainActivity, "",
+		ProgressDialog dialog = ProgressDialog.show(this.getActivity(), "",
 				"Carregando gostosuras..", true);
-		new HttpAsyncTask(mainActivity, dialog).execute();
+		new HttpAsyncTask(this.getActivity(), dialog).execute();
 		return rootView;
 	}
 
@@ -85,7 +82,7 @@ public class SearchFragment extends Fragment {
 	}
 
 	private void seeRecipeDetails(Recipe recipe) {
-		Intent intent = new Intent(mainActivity, SeeRecipeActivity.class);
+		Intent intent = new Intent(this.getActivity(), SeeRecipeActivity.class);
 		intent.putExtra("Recipe", recipe.jsonify());
 		startActivity(intent);
 

@@ -84,8 +84,8 @@ implements AddIngredientDialog.IngredientDialogListener{
 
 	@Override
 	public void onDialogPositiveClick(DialogFragment dialog, String ingrediente) {
-		EditText editText = (EditText) findViewById(R.id.new_ingrediente_description);
-		novoIngrediente = editText.getText().toString();
+		
+		novoIngrediente = ingrediente;
 		if(!(novoIngrediente.trim().length() < 2)){
 			newRecipe.addIngredient(novoIngrediente);
 			ingredientsView = (ListView) findViewById(R.id.new_ingredient_list);

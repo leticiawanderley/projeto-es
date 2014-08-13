@@ -48,6 +48,11 @@ implements AddIngredientDialog.IngredientDialogListener{
 		DialogFragment dialog = new AddIngredientDialog();
 		dialog.show(getFragmentManager(), "AddIngredientDialog");
 	}
+	
+	public void addStep(View view){
+		DialogFragment dialog = new AddIngredientDialog();
+		dialog.show(getFragmentManager(), "AddStepDialog");
+	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {

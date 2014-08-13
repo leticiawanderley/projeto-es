@@ -26,7 +26,9 @@
     <string name="imgdesc">imgdesc</string>
     <string name="search_title">Buscar </string>
     <string name="add_ingrediente">Adicionar Ingrediente </string>
+    <string name="add_step">Adicionar Modo de Preparo </string>
     <string name="descricao_ingrediente">Descrição do ingrediente</string>
+    <string name="descricao_step">Modo de Preparo</string>
     <string name="adicionar">Adicionar</string>
     <string name="cancel">Cancelar</string>
     

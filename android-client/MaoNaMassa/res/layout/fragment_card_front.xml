@@ -2,7 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#a6c"
+    android:background="#FF4444"
     android:padding="16dp"
     android:gravity="bottom">
 
@@ -28,6 +28,7 @@
         android:id="@+id/button_next_step"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#FF3333"
         android:text="Button" />
 
 </LinearLayout>

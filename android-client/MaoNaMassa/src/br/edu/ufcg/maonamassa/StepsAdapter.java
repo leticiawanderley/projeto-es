@@ -2,6 +2,7 @@ package br.edu.ufcg.maonamassa;
 
 import java.util.List;
 
+import br.edu.ufcg.maonamassa.models.Step;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import br.edu.ufcg.maonamassa.models.Step;
 
 public class StepsAdapter extends BaseAdapter {
+
 	private Activity activity;
 	private List<Step> data;
 	private static LayoutInflater inflater = null;
@@ -30,8 +32,8 @@ public class StepsAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public String getItem(int position) {
-		return data.get(position).getDescription();
+	public Step getItem(int position) {
+		return data.get(position);
 	}
 
 	@Override
@@ -44,15 +46,19 @@ public class StepsAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View vi = convertView;
 		if (convertView == null)
-			vi = inflater.inflate(R.layout.ingredientlayout, null);
+			vi = inflater.inflate(R.layout.step_layout, null);
 
-		TextView newIngredient = (TextView) vi
-				.findViewById(R.id.new_ingredient); // ingrediente
-
-		String ingredient = getItem(position);
+		TextView newStepD = (TextView) vi
+				.findViewById(R.id.new_step_description); // descricao
+		TextView newStepT = (TextView) vi
+				.findViewById(R.id.new_step_time); // tepo
+		double time = Double.valueOf(newStepT.toString());
+		
+		Step newStep = data.get(position);
 
 		// Setting all values in listview
-		newIngredient.setText(ingredient);
+		newStep.setDescription(newStepD.toString());
+		newStep.setTime(time);
 		return vi;
 	}
 }

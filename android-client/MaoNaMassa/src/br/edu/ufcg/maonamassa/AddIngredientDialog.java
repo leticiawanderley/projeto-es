@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 public class AddIngredientDialog extends DialogFragment{
 
 	 public interface IngredientDialogListener {
-	        public void onDialogPositiveClick(DialogFragment dialog, String ingrediente);
+	        public void onDialogPositiveClick(DialogFragment dialog);
 	        public void onDialogNegativeClick(DialogFragment dialog);
 	    }
 	    

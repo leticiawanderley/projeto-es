@@ -48,6 +48,11 @@ implements AddIngredientDialog.IngredientDialogListener{
 		DialogFragment dialog = new AddIngredientDialog();
 		dialog.show(getFragmentManager(), "AddIngredientDialog");
 	}
+	
+	public void addStep(View view){
+		DialogFragment dialog = new AddIngredientDialog();
+		dialog.show(getFragmentManager(), "AddStepDialog");
+	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -83,9 +88,8 @@ implements AddIngredientDialog.IngredientDialogListener{
 
 
 	@Override
-	public void onDialogPositiveClick(DialogFragment dialog, String ingrediente) {
-		EditText editText = (EditText) findViewById(R.id.new_ingrediente_description);
-		novoIngrediente = editText.getText().toString();
+	public void onDialogPositiveClick(DialogFragment dialog) {
+		
 		if(!(novoIngrediente.trim().length() < 2)){
 			newRecipe.addIngredient(novoIngrediente);
 			ingredientsView = (ListView) findViewById(R.id.new_ingredient_list);

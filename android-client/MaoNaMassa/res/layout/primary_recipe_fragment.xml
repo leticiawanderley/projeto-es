@@ -40,5 +40,21 @@
         android:layout_height="match_parent"
         android:text="@string/add_ingrediente"
         android:onClick="addIngrediente" />
+    
+    <ListView
+             android:id="@+id/new_step_list"
+             android:layout_width="240dp"
+             android:layout_height="match_parent"
+             android:layout_gravity="start"
+             android:choiceMode="none"
+             android:divider="@android:color/transparent"
+             android:dividerHeight="0dp" />
+    <Button
+        android:id="@+id/add_step_button"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="@string/add_step"
+        android:onClick="addStep" />
+    
 
 </LinearLayout>

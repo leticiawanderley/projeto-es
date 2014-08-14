@@ -2,7 +2,6 @@ package br.edu.ufcg.maonamassa;
 
 import java.util.List;
 
-import br.edu.ufcg.maonamassa.models.Step;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -51,8 +50,10 @@ public class StepsAdapter extends BaseAdapter {
 		TextView newStepD = (TextView) vi
 				.findViewById(R.id.new_step_description); // descricao
 		TextView newStepT = (TextView) vi
-				.findViewById(R.id.new_step_time); // tepo
-		double time = Double.valueOf(newStepT.toString());
+				.findViewById(R.id.new_step_time); // tempo
+		System.out.println(newStepT.toString());
+		double time = /*(newStepT.toString() != null && !newStepT.toString().equals("")) ? 
+				Double.valueOf(newStepT.toString()) : */0.0;
 		
 		Step newStep = data.get(position);
 

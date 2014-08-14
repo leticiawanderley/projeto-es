@@ -35,10 +35,12 @@ public class SeeRecipeActivity extends ActionBarActivity {
 		Intent i = getIntent();
 		recipe = new Recipe(0L, "NULL", null);
 		recipe = recipe.desjsonify(i.getStringExtra("Recipe"));
+		
 		TextView title = (TextView) findViewById(R.id.textView1); // title
 		TextView author = (TextView) findViewById(R.id.textView2); // author
-		TextView ingredients = (TextView) findViewById(R.id.ingredientes); // title
-		TextView steps = (TextView) findViewById(R.id.modoDePreparo); // author
+		TextView ingredients = (TextView) findViewById(R.id.ingredientes); 
+		TextView steps = (TextView) findViewById(R.id.modoDePreparo);
+		
 		title.setText(recipe.getName());
 		author.setText(recipe.getAuthor().getName());
 		ingredients.setText("Ingredientes:");

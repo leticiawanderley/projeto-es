@@ -1,7 +1,5 @@
 package br.edu.ufcg.maonamassa;
 
-import java.util.List;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,8 +17,9 @@ import br.edu.ufcg.maonamassa.models.Step;
 public class SeeRecipeActivity extends ActionBarActivity {
 
 	private ListView ingredientsView;
+	private ListView stepsView;
 	private Recipe recipe;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -32,18 +31,23 @@ public class SeeRecipeActivity extends ActionBarActivity {
 		}
 
 		ingredientsView = (ListView) findViewById(R.id.ingredient_list);
+		stepsView = (ListView) findViewById(R.id.step_list);
 		Intent i = getIntent();
 		recipe = new Recipe(0L, "NULL", null);
 		recipe = recipe.desjsonify(i.getStringExtra("Recipe"));
 		TextView title = (TextView) findViewById(R.id.textView1); // title
 		TextView author = (TextView) findViewById(R.id.textView2); // author
-																	// name
+		TextView ingredients = (TextView) findViewById(R.id.ingredientes); // title
+		TextView steps = (TextView) findViewById(R.id.modoDePreparo); // author
 		title.setText(recipe.getName());
 		author.setText(recipe.getAuthor().getName());
+		ingredients.setText("Ingredientes:");
+		steps.setText("Modo de preparo:");
 		IngredientsAdapter ingredientsAdapter = new IngredientsAdapter(this,
 				recipe.getIngredients());
+		StepsAdapter stepsAdapter = new StepsAdapter(this, recipe.getSteps());
 		ingredientsView.setAdapter(ingredientsAdapter);
-
+		stepsView.setAdapter(stepsAdapter);
 	}
 
 	@Override
@@ -62,12 +66,11 @@ public class SeeRecipeActivity extends ActionBarActivity {
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
 			return true;
-		}
-		else if (id == R.id.action_botao_mao_na_massa) {
+		} else if (id == R.id.action_botao_mao_na_massa) {
 			iniciaMaoNaMassa();
 			return true;
 		}
-		
+
 		return super.onOptionsItemSelected(item);
 	}
 

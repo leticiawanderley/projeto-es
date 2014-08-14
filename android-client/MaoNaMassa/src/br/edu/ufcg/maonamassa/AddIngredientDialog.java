@@ -45,7 +45,7 @@ public class AddIngredientDialog extends DialogFragment{
 		.setPositiveButton(R.string.adicionar, new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int id) {
-				mListener.onDialogPositiveClick(AddIngredientDialog.this);
+				mListener.onDialogPositiveClick(AddIngredientDialog.this, null);
 			}
 		})
 		.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

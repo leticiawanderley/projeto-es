@@ -9,7 +9,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical" >
+        android:orientation="vertical" 
+        android:background="#FF9999">
 
         <TextView
             android:id="@+id/textView1"
@@ -23,15 +24,43 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView" />
+
+        <TextView
+            android:id="@+id/ingredientes"
+            android:layout_width="143dp"
+            android:layout_height="wrap_content"
+            android:background="#FFFF99"
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
 		 <ListView
-             android:id="@+id/ingredient_list"
-             android:layout_width="240dp"
-             android:layout_height="match_parent"
-             android:layout_gravity="start"
-             android:background="#ffffff"
-             android:choiceMode="none"
-             android:divider="@android:color/transparent"
-             android:dividerHeight="0dp" />
+		     android:id="@+id/ingredient_list"
+		     android:layout_width="262dp"
+		     android:layout_height="164dp"
+		     android:layout_gravity="start"
+		     android:background="#FFFF99"
+		     android:choiceMode="none"
+		     android:divider="@android:color/transparent"
+		     android:dividerHeight="0dp" />
+
+		 <TextView
+		     android:id="@+id/modoDePreparo"
+		     android:layout_width="163dp"
+		     android:layout_height="wrap_content"
+		     android:background="#FFCC99"
+		     android:text="Medium Text"
+		     android:textAppearance="?android:attr/textAppearanceMedium" />
+		 
+		 <ListView
+		     android:id="@+id/step_list"
+		     android:layout_width="286dp"
+		     android:layout_height="match_parent"
+		     android:background="#FFCC99"
+		     android:choiceMode="none"
+		     android:divider="@android:color/transparent"
+		     android:dividerHeight="0dp" >
+		 </ListView>
+
     </LinearLayout>
 	
 </FrameLayout>

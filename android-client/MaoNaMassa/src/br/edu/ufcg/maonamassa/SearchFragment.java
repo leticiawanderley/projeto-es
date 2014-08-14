@@ -35,7 +35,7 @@ public class SearchFragment extends Fragment {
 
 		recipesView = (ListView) rootView.findViewById(R.id.listView1);
 		ProgressDialog dialog = ProgressDialog.show(this.getActivity(), "",
-				"Carregando gostosuras..", true);
+				"Carregando gostosuras...", true);
 		new HttpAsyncTask(this.getActivity(), dialog).execute();
 		return rootView;
 	}

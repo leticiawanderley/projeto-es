@@ -25,14 +25,27 @@
 	<string name="hello_world">Hello world!</string>
     <string name="imgdesc">imgdesc</string>
     <string name="search_title">Buscar </string>
+    <string name="ingredientes">Ingredientes</string>
+    <string name="modo_de_preparo">Modo de Preparo</string>
     <string name="add_ingrediente">Adicionar Ingrediente </string>
     <string name="add_step">Adicionar Modo de Preparo </string>
     <string name="descricao_ingrediente">Descrição do ingrediente</string>
     <string name="descricao_step">Modo de Preparo</string>
     <string name="adicionar">Adicionar</string>
     <string name="cancel">Cancelar</string>
-    
-    
+    <string name="quantidade">quantidade</string>
+    <string-array name="medidas_spinner">
+        <item>gramas</item>
+        <item>kilogramas</item>
+        <item>mililitros</item>
+        <item>unidades</item>
+        <item>litros</item>
+        <item>colheres de sopa</item>
+        <item>colheres de chá</item>
+        <item>copos</item>
+        <item>xícaras</item>
+        <item>jarras</item>
+    </string-array>
     
     <string-array name="titles">
         <item>Nome Usuário</item>

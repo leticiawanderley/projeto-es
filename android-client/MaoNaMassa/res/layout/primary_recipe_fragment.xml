@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -6,29 +6,29 @@
     android:orientation="vertical"
     tools:context="br.edu.ufcg.maonamassa.AddRecipeActivity$PlaceholderFragment" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_marginLeft="5dp"
-        android:layout_weight="1"
-        android:text="Titulo da receita"
-        android:textSize="15sp" />
-
     <EditText
         android:id="@+id/title_new_recipe"
-        android:layout_width="314dp"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/title_recipe"
         android:inputType="textCapWords|textPersonName" />
     
+    <TextView 
+        android:id="@+id/text_view_new_ingredientes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@id/title_new_recipe"
+        android:layout_gravity="center"
+        android:text="@string/ingredientes" />
+        
+    
 	<ListView
              android:id="@+id/new_ingredient_list"
              android:layout_width="240dp"
-             android:layout_height="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_below="@id/text_view_new_ingredientes"
              android:layout_gravity="start"
              android:background="#ffffff"
              android:choiceMode="none"
@@ -38,13 +38,24 @@
         android:id="@+id/add_ingrediente_button"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_below="@id/new_ingredient_list"
+        android:layout_centerInParent="true"
         android:text="@string/add_ingrediente"
         android:onClick="addIngrediente" />
+    
+    <TextView 
+        android:id="@+id/text_view_new_modo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/add_ingrediente_button"
+        android:layout_gravity="center"
+        android:text="@string/modo_de_preparo" />
     
     <ListView
              android:id="@+id/new_step_list"
              android:layout_width="240dp"
              android:layout_height="match_parent"
+             android:layout_below="@id/text_view_new_modo"
              android:layout_gravity="start"
              android:choiceMode="none"
              android:divider="@android:color/transparent"
@@ -53,8 +64,10 @@
         android:id="@+id/add_step_button"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_below="@id/new_step_list"
+        android:layout_centerInParent="true"
         android:text="@string/add_step"
         android:onClick="addStep" />
     
 
-</LinearLayout>
+</RelativeLayout>

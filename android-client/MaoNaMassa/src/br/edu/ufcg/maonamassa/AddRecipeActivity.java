@@ -3,6 +3,7 @@ package br.edu.ufcg.maonamassa;
 import java.util.List;
 
 import br.edu.ufcg.maonamassa.models.Recipe;
+import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -85,11 +87,10 @@ implements AddIngredientDialog.IngredientDialogListener{
 		}
 	}
 
-
-
+	
 	@Override
-	public void onDialogPositiveClick(DialogFragment dialog) {
-		
+	public void onDialogPositiveClick(DialogFragment dialog, EditText ingrediente) {
+		novoIngrediente = ingrediente.getText().toString();
 		if(!(novoIngrediente.trim().length() < 2)){
 			newRecipe.addIngredient(novoIngrediente);
 			ingredientsView = (ListView) findViewById(R.id.new_ingredient_list);

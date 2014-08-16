@@ -1,16 +1,20 @@
 package br.edu.ufcg.maonamassa;
 
+import java.lang.reflect.Modifier;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.EditText;
 
 public class AddIngredientDialog extends DialogFragment {
 
 	public interface IngredientDialogListener {
-		void onDialogPositiveClick(DialogFragment dialog);
+		void onDialogPositiveClick(DialogFragment dialog, final EditText ingrediente);
 
 		void onDialogNegativeClick(DialogFragment dialog);
 	}
@@ -37,27 +41,24 @@ public class AddIngredientDialog extends DialogFragment {
 
 	@Override
 	public AlertDialog onCreateDialog(Bundle savedInstanceState) {
-
-		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-		// Get the layout inflater
 		LayoutInflater inflater = getActivity().getLayoutInflater();
-		// Inflate and set the layout for the dialog
+		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+		final View myView = inflater.inflate(R.layout.dialog_add_ingredient, null);
+	    final EditText desc = (EditText) myView.findViewById(R.id.new_ingrediente_description);
 		// Pass null as the parent view because its going in the dialog layout
-		builder.setView(inflater.inflate(R.layout.dialog_add_ingredient, null))
+		builder.setView(myView)
 				// Add action buttons
 				.setPositiveButton(R.string.adicionar,
 						new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(DialogInterface dialog, int id) {
-								mListener
-										.onDialogPositiveClick(AddIngredientDialog.this);
+								mListener.onDialogPositiveClick(AddIngredientDialog.this, desc);
 							}
 						})
 				.setNegativeButton(R.string.cancel,
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int id) {
-								mListener
-										.onDialogNegativeClick(AddIngredientDialog.this);
+								mListener.onDialogNegativeClick(AddIngredientDialog.this);
 							}
 						});
 		return builder.create();

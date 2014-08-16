@@ -59,8 +59,9 @@ public class AddIngredientDialog extends DialogFragment {
 						new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(DialogInterface dialog, int id) {
-								mListener.onDialogPositiveClick(AddIngredientDialog.this, 
-										makeIngredient(unit, medida, desc));
+									mListener.onDialogPositiveClick(AddIngredientDialog.this, 
+											makeIngredient(unit, medida, desc));
+								
 							}
 						})
 				.setNegativeButton(R.string.cancel,
@@ -71,8 +72,17 @@ public class AddIngredientDialog extends DialogFragment {
 						});
 		return builder.create();
 	}
-	
+		
 	private String makeIngredient(EditText unt, Spinner medida, EditText desc){
-		return unt.getText().toString() + " " + medida.getSelectedItem().toString() + " de "+ desc.getText().toString();
+		if(unt.getText().toString().length() > 0 && 
+				desc.getText().toString().length()>0){
+			return unt.getText().toString() + " " +
+					medida.getSelectedItem().toString() + " de " 
+					+ desc.getText().toString();
+		}else if(unt.getText().toString().length() == 0 && 
+				desc.getText().toString().length() > 0){
+			return desc.getText().toString();
+		}
+		return "";
 	}
 }

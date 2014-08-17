@@ -3,6 +3,7 @@ package br.edu.ufcg.maonamassa;
 import java.util.List;
 
 import br.edu.ufcg.maonamassa.models.Recipe;
+import br.edu.ufcg.maonamassa.models.Step;
 import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.content.Intent;
@@ -21,12 +22,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class AddRecipeActivity extends ActionBarActivity
-implements AddIngredientDialog.IngredientDialogListener{
+implements AddIngredientDialog.IngredientDialogListener, AddStepDialog.StepDialogListener{
 	
 	private Recipe newRecipe = new Recipe(0L, null, null);//manager.getUserDetails());
 	private ListView ingredientsView;
 	private IngredientsAdapter ingredientsAdapter;
+	private ListView stepsView;
+	private StepsAdapter stepsAdapter;
 	private String novoIngrediente = "";
+	private Step novoStep;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -52,7 +57,7 @@ implements AddIngredientDialog.IngredientDialogListener{
 	}
 	
 	public void addStep(View view){
-		DialogFragment dialog = new AddIngredientDialog();
+		DialogFragment dialog = new AddStepDialog();
 		dialog.show(getFragmentManager(), "AddStepDialog");
 	}
 
@@ -105,5 +110,33 @@ implements AddIngredientDialog.IngredientDialogListener{
 		dialog.dismiss();
 		
 	}
+
+	@Override
+	public void onDialogPositiveClick(DialogFragment dialog, Step step) {
+		novoStep = step;
+		if(novoStep != null){
+			newRecipe.addStep(novoStep);
+			stepsView = (ListView) findViewById(R.id.new_step_list);
+			stepsAdapter = new StepsAdapter(this,
+					newRecipe.getSteps());
+			stepsView.setAdapter(stepsAdapter);
+		}
+		
+		
+	}
+
+	@Override
+	public void onStepDialogPositiveClick(DialogFragment dialog,
+			Step ingrediente) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onStepDialogNegativeClick(DialogFragment dialog) {
+		dialog.dismiss();
+		
+	}
+
 
 }

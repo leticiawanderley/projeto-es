@@ -48,18 +48,21 @@ public class StepsAdapter extends BaseAdapter {
 			vi = inflater.inflate(R.layout.step_layout, null);
 
 		TextView newStepD = (TextView) vi
-				.findViewById(R.id.new_step_description); // descricao
+				.findViewById(R.id.new_step_description_l); // descricao
 		TextView newStepT = (TextView) vi
-				.findViewById(R.id.new_step_time); // tempo
-		System.out.println(newStepT.toString());
-		double time = /*(newStepT.toString() != null && !newStepT.toString().equals("")) ? 
-				Double.valueOf(newStepT.toString()) : */0.0;
+				.findViewById(R.id.new_step_time_l); // tempo
+		System.out.println(newStepD.getText().toString());
 		
 		Step newStep = data.get(position);
 
 		// Setting all values in listview
-		newStep.setDescription(newStepD.toString());
-		newStep.setTime(time);
+		newStepD.setText(newStep.getDescription());
+		if(newStep.getTime() > 0){
+			newStepT.setText("" + newStep.getTime());
+		}else{
+			newStepT.setText("");
+		}
+			
 		return vi;
 	}
 }

@@ -23,7 +23,7 @@ public class ModelFacade {
 		recipe.addIngredient(newIngredient);
 	}
 
-	public void addNewStep(Recipe recipe, String description, double time) {
+	public void addNewStep(Recipe recipe, String description, int time) {
 		Step newStep = new Step(description, time);
 		recipe.addStep(newStep);
 	}

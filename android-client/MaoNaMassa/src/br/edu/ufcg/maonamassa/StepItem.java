@@ -2,17 +2,17 @@ package br.edu.ufcg.maonamassa;
 
 public class StepItem {
 	private String descricao;
-	private String tempo;
-	public StepItem(String descricao, String tempo) {
+	private int tempo;
+	public StepItem(String descricao, int tempo) {
 		this.descricao = descricao;
 		this.tempo = tempo;
 	}
 
-	public String getTempo() {
+	public int getTempo() {
 		return tempo;
 	}
 
-	public void setTempo(String tempo) {
+	public void setTempo(int tempo) {
 		this.tempo = tempo;
 	}
 

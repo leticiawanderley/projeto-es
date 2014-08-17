@@ -2,6 +2,8 @@ package br.edu.ufcg.maonamassa;
 
 import java.lang.reflect.Modifier;
 
+import br.edu.ufcg.maonamassa.AddStepDialog.StepDialogListener;
+import br.edu.ufcg.maonamassa.models.Step;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DialogFragment;
@@ -14,15 +16,18 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-public class AddIngredientDialog extends DialogFragment {
+public class AddIngredientDialog extends DialogFragment implements AddStepDialog.StepDialogListener{
 	public interface IngredientDialogListener {
 		void onDialogPositiveClick(DialogFragment dialog, final String ingrediente);
-
 		void onDialogNegativeClick(DialogFragment dialog);
+		void onStepDialogPositiveClick(DialogFragment dialog, final Step ingrediente);
+		void onStepDialogNegativeClick(DialogFragment dialog);
 	}
 
+	
 	// Use this instance of the interface to deliver action events
 	IngredientDialogListener mListener;
+	
 	// Override the Fragment.onAttach() method to instantiate the
 	// NoticeDialogListener
 	@Override
@@ -36,7 +41,7 @@ public class AddIngredientDialog extends DialogFragment {
 		} catch (ClassCastException e) {
 			// The activity doesn't implement the interface, throw exception
 			throw new ClassCastException(activity.toString()
-					+ " must implement NoticeDialogListener");
+					+ " must implement IngredientDialogListener");
 		}
 	}
 
@@ -84,5 +89,16 @@ public class AddIngredientDialog extends DialogFragment {
 			return desc.getText().toString();
 		}
 		return "";
+	}
+
+	@Override
+	public void onDialogPositiveClick(DialogFragment dialog, Step step) {
+		mListener.onStepDialogPositiveClick(dialog, step);
+		
+	}
+
+	@Override
+	public void onDialogNegativeClick(DialogFragment dialog) {
+		mListener.onStepDialogNegativeClick(dialog);
 	}
 }

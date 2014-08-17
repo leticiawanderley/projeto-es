@@ -66,7 +66,7 @@ public class AddStepDialog extends DialogFragment{
 	
 	private Step makeStep(EditText desc, EditText time) {
 		String descricao = desc.getText().toString(); 
-		Integer tempo = Integer.valueOf(time.getText().toString());  
+		Double tempo = Double.valueOf(time.getText().toString());  
 		if(descricao.length() > 0 && tempo >0){
 			return new Step(descricao, tempo);
 		}

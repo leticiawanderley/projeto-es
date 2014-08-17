@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class AddRecipeActivity extends ActionBarActivity
 implements AddIngredientDialog.IngredientDialogListener, AddStepDialog.StepDialogListener{
@@ -31,11 +32,13 @@ implements AddIngredientDialog.IngredientDialogListener, AddStepDialog.StepDialo
 	private StepsAdapter stepsAdapter;
 	private String novoIngrediente = "";
 	private Step novoStep;
+	private SessionManager session;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_recipe);
+		session = new SessionManager(this);
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
 			.add(R.id.container_add_receita, new PlaceholderFragment()).commit();
@@ -70,7 +73,21 @@ implements AddIngredientDialog.IngredientDialogListener, AddStepDialog.StepDialo
 		if (id == R.id.action_settings) {
 			return true;
 		}
+		if (id == R.id.action_save_recipe) {
+			saveRecipe(newRecipe);
+			return true;
+		}
 		return super.onOptionsItemSelected(item);
+	}
+
+
+
+	private void saveRecipe(Recipe recipe) {
+		EditText txt = (EditText) findViewById(R.id.title_new_recipe);
+		recipe.setName(txt.getText().toString());
+		Toast ok = Toast.makeText(this, "Receita salva", 2);
+		recipe.create(session.getUserDetails(), ok);
+		
 	}
 
 

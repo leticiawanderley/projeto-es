@@ -4,6 +4,9 @@ package br.edu.ufcg.maonamassa.utils;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.net.URI;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +18,9 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import br.edu.ufcg.maonamassa.models.User;
+import android.widget.Toast;
+import br.edu.ufcg.maonamassa.RequestTask;
+import br.edu.ufcg.maonamassa.models.*;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.*;
@@ -35,17 +40,19 @@ import com.google.gson.*;
 public abstract class Storable<Recipe> {
 	
 	
-	public void create(User user) throws Exception {
+	public void create(User user, Toast ok)  {
 		String result = jsonify();
 		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append(Routes.SERVER_URL + "/");
 		stringBuilder.append(Routes.CREATE_ROUTE + "?");
-		stringBuilder.append("what=" + this.getClass().getName());
-		stringBuilder.append("user_id=" + user.getId());
-		stringBuilder.append("token=" + user.getAccessToken());
+		stringBuilder.append("what=Recipe&");
+		stringBuilder.append("user_id=" + user.getId() + "&");
+		stringBuilder.append("token=" + user.getAccessToken() + "&");
 		stringBuilder.append("json=" + result);
 		String handlerArguments = stringBuilder.toString();
-		
-		sendRequest(handlerArguments);
+		//handlerArguments = URLEncoder.encode(handlerArguments);
+		new RequestTask(ok).execute(handlerArguments); 
+		//new Logo
 	}
 
 	public String jsonify() {

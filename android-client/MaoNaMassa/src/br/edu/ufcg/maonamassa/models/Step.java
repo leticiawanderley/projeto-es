@@ -9,13 +9,13 @@ public class Step extends Storable<Step> {
 	
 	private String description;
 	
-	private int time;
+	private double time;
 	
 	private Annex annex;
 	
-	public Step(String description, int time) {
+	public Step(String description, double tempo) {
 		this.description = description;
-		this.time = time;
+		this.time = tempo;
 	}
 
 
@@ -27,7 +27,7 @@ public class Step extends Storable<Step> {
 		this.description = description;
 	}
 
-	public int getTime() {
+	public double getTime() {
 		return time;
 	}
 

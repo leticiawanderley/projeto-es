@@ -11,7 +11,7 @@ public class StepTest {
 
 	String VAZIO = "";
 	String DESCRICAO = "QUALQUER DESCRICAO";
-	double TIME = 0.0;
+	int TIME = 0;
 	Step stepTest1;
 
 	@Before

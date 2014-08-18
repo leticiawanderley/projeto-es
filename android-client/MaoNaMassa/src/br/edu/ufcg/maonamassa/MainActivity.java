@@ -6,6 +6,8 @@ import java.util.List;
 import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
@@ -13,6 +15,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -138,6 +141,11 @@ public class MainActivity extends ActionBarActivity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.main, menu);
+		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+		SearchView searchView = (SearchView) menu.findItem(R.id.action_search_act).getActionView();
+		// Assumes current activity is the searchable activity
+		searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+		searchView.setIconifiedByDefault(true); // Do not iconify the widget; expand it by default
 
 		if (session.isLoggedIn()) {
 			menu.findItem(R.id.action_login).setTitle("Logout");
@@ -154,6 +162,8 @@ public class MainActivity extends ActionBarActivity {
 		}
 		// Handle presses on the action bar items
 		switch (item.getItemId()) {
+		case R.id.action_search_act:
+			return true;
 		case R.id.action_add_recipe:
 			addRecipe();
 			return true;
@@ -209,6 +219,12 @@ public class MainActivity extends ActionBarActivity {
 
 	private void addRecipe() {
 		Intent intent = new Intent(this, AddRecipeActivity.class);
+		startActivity(intent);	
+
+	}
+	
+	private void searchRecipe() {
+		Intent intent = new Intent(this, SearchableActivity.class);
 		startActivity(intent);	
 
 	}

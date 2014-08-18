@@ -22,7 +22,7 @@
     <string name="action_botao_mao_na_massa">Mão na massa</string>
     <string name="login_activity">Fazendo login</string>
     <string name="Tempo_de_Preparo">Tempo de Preparo</string>
-	<string name="hello_world">Hello world!</string>
+    <string name="hello_world">Hello world!</string>
     <string name="imgdesc">imgdesc</string>
     <string name="search_title">Buscar </string>
     <string name="ingredientes">Ingredientes</string>
@@ -34,6 +34,8 @@
     <string name="adicionar">Adicionar</string>
     <string name="cancel">Cancelar</string>
     <string name="quantidade">quantidade</string>
+    <string name="action_search">Buscar</string>
+
     <string-array name="medidas_spinner">
         <item>gramas</item>
         <item>kilogramas</item>
@@ -46,7 +48,6 @@
         <item>xícaras</item>
         <item>jarras</item>
     </string-array>
-    
     <string-array name="titles">
         <item>Nome Usuário</item>
         <item>Buscar Receitas</item>
@@ -58,5 +59,7 @@
         <item>@drawable/ic_action_search</item>
         <item>@drawable/ic_action_new</item>
     </array>
-    
+
+    <string name="title_activity_search">SearchActivity</string>
+
 </resources>

@@ -9,9 +9,7 @@
         android:targetSdkVersion="21" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
 
     <application
         android:allowBackup="true"
@@ -19,22 +17,21 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".TelaBoasVindasActivity"
+            android:name="br.edu.ufcg.maonamassa.TelaBoasVindasActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name="br.edu.ufcg.maonamassa.MainActivity"
             android:label="@string/app_name" >
-            
         </activity>
         <activity
             android:name="br.edu.ufcg.maonamassa.MaoNaMassaActivity"
             android:label="@string/app_name" >
-            
         </activity>
         <activity
             android:name="br.edu.ufcg.maonamassa.AddRecipeActivity"
@@ -58,6 +55,17 @@
             android:parentActivityName="br.edu.ufcg.maonamassa.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.edu.ufcg.maonamassa.MainActivity" />
+        </activity>
+        <activity
+            android:name="br.edu.ufcg.maonamassa.SearchableActivity"
+            android:label="@string/title_activity_search"
+            android:parentActivityName="br.edu.ufcg.maonamassa.MainActivity" >
+            <intent-filter>
+            	<action android:name="android.intent.action.SEARCH" />
+       		 </intent-filter>
+            <meta-data
+                android:name="android.app.searchable"
                 android:value="br.edu.ufcg.maonamassa.MainActivity" />
         </activity>
     </application>

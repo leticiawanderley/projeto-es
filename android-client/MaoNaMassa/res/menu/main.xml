@@ -3,12 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="br.edu.ufcg.maonamassa.MainActivity" >
 
-    <item android:id="@+id/search"
-          android:orderInCategory="10"
-          android:title="@string/search_title"
-          android:icon="@drawable/ic_action_search"
-          android:showAsAction="collapseActionView|ifRoom"
-          android:actionViewClass="android.widget.SearchView" />
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
@@ -24,6 +18,11 @@
         android:id="@+id/action_login"
         android:orderInCategory="100"
         android:title="@string/action_login"
-        app:showAsAction="ifRoom"/>
-   
+        app:showAsAction="never"/>
+   	
+    <item android:id="@+id/action_search_act"
+          android:title="@string/action_search"
+          android:icon="@drawable/ic_action_search"
+          app:showAsAction="ifRoom|collapseActionView"
+          app:actionViewClass="android.support.v7.widget.SearchView" />
 </menu>

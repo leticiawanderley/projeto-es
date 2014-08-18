@@ -56,9 +56,10 @@ public class StepsAdapter extends BaseAdapter {
 		Step newStep = data.get(position);
 
 		// Setting all values in listview
-		newStepD.setText(newStep.getDescription());
+		newStepD.setText(newStep.getDescription() + "\n ");
 		if(newStep.getTime() > 0){
-			newStepT.setText("" + newStep.getTime());
+			String formatado = Double.toString(newStep.getTime());
+			newStepT.setText("Duração: " + formatado.subSequence(0, formatado.length()- 2) + " minutos");
 		}else{
 			newStepT.setText("");
 		}

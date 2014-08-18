@@ -141,17 +141,17 @@ implements AddIngredientDialog.IngredientDialogListener, AddStepDialog.StepDialo
 		
 		
 	}
+	
+	@Override
+	public void onStepDialogNegativeClick(DialogFragment dialog) {
+		dialog.dismiss();
+		
+	}
 
 	@Override
 	public void onStepDialogPositiveClick(DialogFragment dialog,
 			Step ingrediente) {
 		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onStepDialogNegativeClick(DialogFragment dialog) {
-		dialog.dismiss();
 		
 	}
 

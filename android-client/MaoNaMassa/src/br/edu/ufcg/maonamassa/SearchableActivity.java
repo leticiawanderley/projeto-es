@@ -1,19 +1,34 @@
 package br.edu.ufcg.maonamassa;
 
+import java.util.List;
+
+import br.edu.ufcg.maonamassa.models.Recipe;
+import br.edu.ufcg.maonamassa.utils.HttpURLCon;
+import br.edu.ufcg.maonamassa.utils.Routes;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 import android.os.Build;
 
 public class SearchableActivity extends ActionBarActivity {
+
+	private ListView recipesView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,15 +40,34 @@ public class SearchableActivity extends ActionBarActivity {
 	      String query = intent.getStringExtra(SearchManager.QUERY);
 	      doMySearch(query);
 	    }
+	    
+	    
+
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.search_container2, new PlaceholderFragment()).commit();
 		}
 	}
+	
+	
+	@Override
+    protected void onNewIntent(Intent intent) {
+        handleIntent(intent);
+    }
+	
+	
+	private void handleIntent(Intent intent) {
+
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            doMySearch(query);
+        }
+    }
 
 	private void doMySearch(String query) {
-		// TODO Auto-generated method stub
-		
+		Intent intent = new Intent(this, MainActivity.class);
+		intent.putExtra("query", query);
+		startActivity(intent);
 	}
 
 	@Override
@@ -73,4 +107,7 @@ public class SearchableActivity extends ActionBarActivity {
 		}
 	}
 
+	
+
+	
 }

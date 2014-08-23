@@ -32,29 +32,44 @@ public class SearchFragment extends Fragment {
 			Bundle savedInstanceState) {
 		View rootView = inflater
 				.inflate(R.layout.fb_fragment, container, false);
-
 		recipesView = (ListView) rootView.findViewById(R.id.listView1);
 		ProgressDialog dialog = ProgressDialog.show(this.getActivity(), "",
 				"Carregando gostosuras...", true);
-		new HttpAsyncTask(this.getActivity(), dialog).execute();
+		Intent data = this.getActivity().getIntent();
+		if(data.hasExtra("query")){
+			new HttpAsyncTask(this.getActivity(), dialog, data.getStringExtra("query")).execute();
+		} else {
+			new HttpAsyncTask(this.getActivity(), dialog).execute();
+		}
+		
+		
+		
 		return rootView;
 	}
 
 	private class HttpAsyncTask extends AsyncTask<String, Void, String> {
 
-		Activity that;
-		ProgressDialog dialog;
+		private Activity that;
+		private ProgressDialog dialog;
+		private String query;
 
+		public HttpAsyncTask(Activity that, ProgressDialog dialog, String query) {
+			this.that = that;
+			this.dialog = dialog;
+			this.query = query;
+		}
+		
 		public HttpAsyncTask(Activity that, ProgressDialog dialog) {
 			this.that = that;
 			this.dialog = dialog;
+			this.query="";
 		}
 
 		@Override
 		protected String doInBackground(String... urls) {
 
 			return HttpURLCon
-					.GET(Routes.SERVER_URL + "/" + Routes.SEARCH_ROUTE);
+					.GET(Routes.SERVER_URL + "/" + Routes.SEARCH_ROUTE + "?query=" + query);
 		}
 
 		// onPostExecute displays the results of the AsyncTask.

@@ -14,12 +14,12 @@ import br.edu.ufcg.maonamassa.models.Recipe;
 
 public class LazyAdapter extends BaseAdapter {
 
-	private Activity activity;
+	private Context activity;
 	private List<Recipe> data;
 	private static LayoutInflater inflater = null;
 
-	public LazyAdapter(Activity a, List<Recipe> your_array_list) {
-		activity = a;
+	public LazyAdapter(Context that, List<Recipe> your_array_list) {
+		activity = that;
 		data = your_array_list;
 		inflater = (LayoutInflater) activity
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

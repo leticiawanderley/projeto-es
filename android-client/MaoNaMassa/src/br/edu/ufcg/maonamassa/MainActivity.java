@@ -21,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
@@ -141,12 +142,16 @@ public class MainActivity extends ActionBarActivity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.main, menu);
+		
+		
 		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
 		SearchView searchView = (SearchView) menu.findItem(R.id.action_search_act).getActionView();
 		// Assumes current activity is the searchable activity
 		searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 		searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
 		searchView.setSubmitButtonEnabled(true);
+		
+		
 		if (session.isLoggedIn()) {
 			menu.findItem(R.id.action_login).setTitle("Logout");
 		}
@@ -223,6 +228,17 @@ public class MainActivity extends ActionBarActivity {
 
 	}
 	
+	private void reinit() {
+		Intent intent = new Intent(this, MainActivity.class);
+		startActivity(intent);	
+
+	}
+	
+	private void searchRecipe() {
+		Intent intent = new Intent(this, SearchableActivity.class);
+		startActivity(intent);	
+
+	}
 
 	private void openSettings() {
 		// TODO Auto-generated method stub

@@ -148,6 +148,7 @@ class SearchHandler(webapp2.RequestHandler):
     """
 
     def get(self):
+        query = self.request.get("query")
         all = Recipe.all()
         recipes_list = []
         for recipe in all:
@@ -161,8 +162,11 @@ class SearchHandler(webapp2.RequestHandler):
                 step_dict = {"id": step.key().id(), "description": step.description, "time": step.time}
                 steps_list.append(step_dict)
             recipe_dict["steps"] = steps_list
-
-            recipes_list.append(recipe_dict)
+            if query:
+                if query.lower() in " ".join([recipe.name, recipe.author.name, recipe.author.email] + recipe.ingredients).lower():
+                    recipes_list.append(recipe_dict)
+            else:
+                recipes_list.append(recipe_dict)
         self.response.write(json.dumps(recipes_list))
 
 

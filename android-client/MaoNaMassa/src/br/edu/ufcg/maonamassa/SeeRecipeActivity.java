@@ -13,9 +13,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import br.edu.ufcg.maonamassa.models.Recipe;
 import br.edu.ufcg.maonamassa.models.Step;
+import br.edu.ufcg.maonamassa.models.RecipeBook;;
 
 public class SeeRecipeActivity extends ActionBarActivity {
-
+	
+	private SessionManager session;
+	private Menu menu;
 	private ListView ingredientsView;
 	private ListView stepsView;
 	private Recipe recipe;
@@ -29,7 +32,7 @@ public class SeeRecipeActivity extends ActionBarActivity {
 					.add(R.id.container_ver_receita, new PlaceholderFragment())
 					.commit();
 		}
-
+		session = new SessionManager(getApplicationContext());
 		ingredientsView = (ListView) findViewById(R.id.ingredient_list);
 		stepsView = (ListView) findViewById(R.id.step_list);
 		Intent i = getIntent();
@@ -54,9 +57,16 @@ public class SeeRecipeActivity extends ActionBarActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-
+		this.menu = menu;
 		// Inflate the menu; this adds items to the action bar if it is present.
+		
 		getMenuInflater().inflate(R.menu.add_colecao, menu);
+		if(session.getUserDetails().getBook().searchRecipe(recipe.getName()) != null){
+			menu.findItem(R.id.action_add_to_book).setIcon(R.drawable.ic_star_on);
+			RecipeBook book = session.getUserDetails().getBook();
+			book.addRecipe(recipe);
+			session.getUserDetails().setBook(book);
+		}
 		return true;
 	}
 
@@ -70,6 +80,13 @@ public class SeeRecipeActivity extends ActionBarActivity {
 			return true;
 		} else if (id == R.id.action_botao_mao_na_massa) {
 			iniciaMaoNaMassa();
+			return true;
+		}else if (id == R.id.action_add_to_book) {
+			if(session.getUserDetails().getBook().searchRecipe(recipe.getName()) == null){
+				menu.findItem(R.id.action_add_to_book).setIcon(R.drawable.ic_star_on);
+				
+			}
+			
 			return true;
 		}
 

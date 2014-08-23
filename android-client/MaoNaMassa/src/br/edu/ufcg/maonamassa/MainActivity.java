@@ -145,8 +145,8 @@ public class MainActivity extends ActionBarActivity {
 		SearchView searchView = (SearchView) menu.findItem(R.id.action_search_act).getActionView();
 		// Assumes current activity is the searchable activity
 		searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-		searchView.setIconifiedByDefault(true); // Do not iconify the widget; expand it by default
-
+		searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
+		searchView.setSubmitButtonEnabled(true);
 		if (session.isLoggedIn()) {
 			menu.findItem(R.id.action_login).setTitle("Logout");
 		}
@@ -223,11 +223,6 @@ public class MainActivity extends ActionBarActivity {
 
 	}
 	
-	private void searchRecipe() {
-		Intent intent = new Intent(this, SearchableActivity.class);
-		startActivity(intent);	
-
-	}
 
 	private void openSettings() {
 		// TODO Auto-generated method stub

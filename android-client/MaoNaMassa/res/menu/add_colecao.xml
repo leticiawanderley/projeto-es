@@ -8,15 +8,19 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never"/>
-	<item
-        android:id="@+id/action_see_recipe"
-        android:orderInCategory="100"
-        android:title="@string/action_add_colecao"
-        app:showAsAction="ifRoom"/>
+	<item android:id="@+id/action_add_to_book"
+	      android:checkable="true"
+	      android:checked="false"
+	      android:icon="@drawable/ic_star_off" 
+	      android:visible="true" 
+	      android:enabled="true"
+	      app:showAsAction="always"/>
 	<item
         android:id="@+id/action_botao_mao_na_massa"
         android:orderInCategory="100"
         android:title="@string/action_botao_mao_na_massa"
         app:showAsAction="always"/>
+	
+	
     
 </menu>

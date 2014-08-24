@@ -6,7 +6,6 @@
             android:id="@+id/new_ingredient"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@+id/label"
             android:textSize="30sp" />
 
 

@@ -16,7 +16,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/receita_1"
-            android:text="@+id/label"
             android:textSize="25sp" />
 	    
 	    <TextView
@@ -24,7 +23,6 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:hint="@string/autor_1"
-	        android:text="@+id/label"
 	        android:textSize="15sp" >
 	
 	    </TextView>

@@ -1,33 +1,27 @@
 package br.edu.ufcg.maonamassa;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import br.edu.ufcg.maonamassa.MainActivity.SlideitemListener;
+import br.edu.ufcg.maonamassa.models.Recipe;
 import br.edu.ufcg.maonamassa.models.RecipeBook;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
+import android.annotation.SuppressLint;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
-import android.os.Build;
 
+@SuppressLint("Recycle")
 public class SeeBookActivity extends ActionBarActivity {
-	class SlideitemListener implements ListView.OnItemClickListener {
-		@Override
-		public void onItemClick(AdapterView parent, View view, int position,
-				long id) {
-		}
-	}
-	
+	private TypedArray menuIcons;
 	private ListView recipeList;
-	private List<RowItem> rowItems;
 	private LazyAdapter adapter;
+	private List<RowItem> rowItems;
 	private SessionManager session;
 	
 	@Override
@@ -39,15 +33,19 @@ public class SeeBookActivity extends ActionBarActivity {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container_book, new PlaceholderFragment()).commit();
 		}
-		
 		RecipeBook book = session.getBook();
-		
-		
-		
-		recipeList = (ListView) findViewById(R.id.book_list);
-		adapter = new LazyAdapter(getApplicationContext(), book.getRecipes());
+		List<Recipe> recipes = book.getRecipes();
+		menuIcons = getResources().obtainTypedArray(R.array.icons);
+		rowItems = new ArrayList<RowItem>();
+		for (int i = 0; i < recipes.size(); i++) {
+			RowItem items = new RowItem(recipes.get(i).getName(), 
+					menuIcons.getResourceId(i, -1));
+			rowItems.add(items);
+		}
+		System.out.println(recipes.size());
+		recipeList = (ListView) findViewById(R.id.book_list2);
+		adapter = new LazyAdapter(getApplicationContext(), recipes);
 		recipeList.setAdapter(adapter);
-		recipeList.setOnItemClickListener(new SlideitemListener());
 	}
 
 	@Override

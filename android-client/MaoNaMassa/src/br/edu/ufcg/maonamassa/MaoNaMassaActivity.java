@@ -56,7 +56,7 @@ public class MaoNaMassaActivity extends Activity implements
 			// state,
 			// this fragment will have already been added to the activity.
 			getFragmentManager().beginTransaction()
-					.add(R.id.container, fragment).commit();
+					.add(R.id.container_maonamassa, fragment).commit();
 		} else {
 			mShowingBack = (getFragmentManager().getBackStackEntryCount() > 0);
 		}
@@ -130,7 +130,7 @@ public class MaoNaMassaActivity extends Activity implements
 				// representing the next page (indicated by the just-incremented
 				// currentPage
 				// variable).
-				.replace(R.id.container, fragment)
+				.replace(R.id.container_maonamassa, fragment)
 
 				// Add this transaction to the back stack, allowing users to
 				// press Back

@@ -153,7 +153,10 @@ public class SessionManager {
 		
 	}
 	public void saveBook(){
+		RecipeBook previousRecipes = getBook();
+		
 		List<Recipe> recipes = book.getRecipes();
+		recipes.addAll(previousRecipes.getRecipes());
 		Set<String> recipe = new TreeSet<String>();
 		for (Recipe r : recipes) {
 			recipe.add(r.jsonify());

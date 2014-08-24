@@ -177,7 +177,10 @@ public class MainActivity extends ActionBarActivity {
 		case R.id.action_search_act:
 			return true;
 		case R.id.action_add_recipe:
-			addRecipe();
+			if(session.isLoggedIn())
+				addRecipe();
+			else 
+				login();
 			return true;
 		case R.id.action_login:
 			login();

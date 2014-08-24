@@ -152,6 +152,11 @@ public class SessionManager {
 		saveBook();
 		
 	}
+	public void removeRecipeFromBook(Recipe recipe) {
+		book.addRecipe(recipe);
+		saveRemovedBook();
+		
+	}
 	public void saveBook(){
 		RecipeBook previousRecipes = getBook();
 		
@@ -159,6 +164,21 @@ public class SessionManager {
 		recipes.addAll(previousRecipes.getRecipes());
 		Set<String> recipe = new TreeSet<String>();
 		for (Recipe r : recipes) {
+			recipe.add(r.jsonify());
+		}
+		System.out.println(recipes.size());
+		editorBook.putString(KEY_DONO, getUserDetails().getId());
+		editorBook.putStringSet(KEY_BOOK, recipe);
+		editorBook.commit();
+	}
+	
+	public void saveRemovedBook(){
+		RecipeBook previousRecipes = getBook();
+		List<Recipe> all = previousRecipes.getRecipes();
+		List<Recipe> recipes = book.getRecipes();
+		all.removeAll(recipes);
+		Set<String> recipe = new TreeSet<String>();
+		for (Recipe r : all) {
 			recipe.add(r.jsonify());
 		}
 		System.out.println(recipes.size());

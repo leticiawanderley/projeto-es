@@ -79,6 +79,9 @@ public class SeeRecipeActivity extends ActionBarActivity {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
+		Intent i = getIntent();
+		recipe = new Recipe(0L, "NULL", null);
+		recipe = recipe.desjsonify(i.getStringExtra("Recipe"));
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
 			return true;
@@ -86,9 +89,12 @@ public class SeeRecipeActivity extends ActionBarActivity {
 			iniciaMaoNaMassa();
 			return true;
 		}else if (id == R.id.action_add_to_book) {
-			if(session.getUserDetails().getBook().searchRecipe(recipe.getName()) == null){
+			if(!session.getBook().getRecipes().contains(recipe)){
 				menu.findItem(R.id.action_add_to_book).setIcon(R.drawable.ic_star_on);
 				session.addRecipeToBook(recipe);
+			} else {
+				menu.findItem(R.id.action_add_to_book).setIcon(R.drawable.ic_star_off);
+				session.removeRecipeFromBook(recipe);
 			}
 			
 			return true;

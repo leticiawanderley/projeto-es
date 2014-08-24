@@ -59,6 +59,7 @@
         <item>@drawable/ic_action_search</item>
         <item>@drawable/ic_action_search</item>
         <item>@drawable/ic_action_new</item>
+        <item>@drawable/ic_action_literature_xxl</item>
     </array>
 
     <string name="title_activity_search">SearchActivity</string>

@@ -51,8 +51,17 @@ public class BookFragment extends Fragment {
 		RecipeBook book = session.getBook();
 		List<Recipe> recipes = book.getRecipes();
 		System.out.println(recipes.size());
-		LazyAdapter adapter = new LazyAdapter(getActivity(), recipes);
+		final LazyAdapter adapter = new LazyAdapter(getActivity(), recipes);
 		recipesView.setAdapter(adapter);
+		recipesView.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+
+				seeRecipeDetails(adapter.getItem(position));
+
+			}
+		});
 		dialog.cancel();
 	}
 

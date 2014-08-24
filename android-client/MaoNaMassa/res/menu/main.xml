@@ -22,7 +22,7 @@
    	
     <item android:id="@+id/action_search_act"
           android:title="@string/action_search"
-          android:icon="@drawable/ic_action_search"
+          android:icon="@drawable/ic_action_search_white"
           app:showAsAction="ifRoom|collapseActionView"
           app:actionViewClass="android.support.v7.widget.SearchView" />
 </menu>

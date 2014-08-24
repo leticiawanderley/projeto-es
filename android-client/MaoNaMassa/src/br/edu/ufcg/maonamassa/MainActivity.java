@@ -115,7 +115,8 @@ public class MainActivity extends ActionBarActivity {
 			addRecipe();
 			break;
 		case 3:
-			seeBook();
+			fragment = new BookFragment();
+			//seeBook();
 			break;
 		
 		default:

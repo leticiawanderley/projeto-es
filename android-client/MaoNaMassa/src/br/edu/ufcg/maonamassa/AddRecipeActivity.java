@@ -1,6 +1,7 @@
 package br.edu.ufcg.maonamassa;
 
 import java.util.List;
+
 import br.edu.ufcg.maonamassa.models.Recipe;
 import br.edu.ufcg.maonamassa.models.RecipeBook;
 import br.edu.ufcg.maonamassa.models.Step;
@@ -90,7 +91,8 @@ implements AddIngredientDialog.IngredientDialogListener, AddStepDialog.StepDialo
 		Toast ok = Toast.makeText(this, "Receita salva", 2);
 		recipe.create(session.getUserDetails(), ok);
 		session.addRecipeToBook(recipe);
-		
+		Intent intent = new Intent(this, MainActivity.class);
+		startActivity(intent);	
 	}
 
 

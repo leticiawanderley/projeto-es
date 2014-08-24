@@ -111,6 +111,13 @@ public class MainActivity extends ActionBarActivity {
 		case 1:
 			fragment = new SearchFragment();
 			break;
+		case 2:
+			addRecipe();
+			break;
+		case 3:
+			seeBook();
+			break;
+		
 		default:
 			break;
 		}
@@ -224,8 +231,14 @@ public class MainActivity extends ActionBarActivity {
 	private void addRecipe() {
 		Intent intent = new Intent(this, AddRecipeActivity.class);
 		startActivity(intent);	
+	}
+	
+	private void seeBook() {
+		Intent intent = new Intent(this, SeeBookActivity.class);
+		startActivity(intent);	
 
 	}
+
 	
 	private void reinit() {
 		Intent intent = new Intent(this, MainActivity.class);

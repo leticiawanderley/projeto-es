@@ -89,10 +89,7 @@ implements AddIngredientDialog.IngredientDialogListener, AddStepDialog.StepDialo
 		recipe.setName(txt.getText().toString());
 		Toast ok = Toast.makeText(this, "Receita salva", 2);
 		recipe.create(session.getUserDetails(), ok);
-		RecipeBook book = session.getUserDetails().getBook();
-		book.addRecipe(recipe);
-		session.getUserDetails().setBook(book);
-		session.saveBook(book);
+		session.addRecipeToBook(recipe);
 		
 	}
 

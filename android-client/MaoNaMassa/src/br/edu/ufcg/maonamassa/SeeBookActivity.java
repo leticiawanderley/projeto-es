@@ -3,6 +3,7 @@ package br.edu.ufcg.maonamassa;
 import java.util.List;
 
 import br.edu.ufcg.maonamassa.MainActivity.SlideitemListener;
+import br.edu.ufcg.maonamassa.models.RecipeBook;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -24,9 +25,9 @@ public class SeeBookActivity extends ActionBarActivity {
 		}
 	}
 	
-	private ListView mDrawerList;
+	private ListView recipeList;
 	private List<RowItem> rowItems;
-	private CustomAdapter adapter;
+	private LazyAdapter adapter;
 	private SessionManager session;
 	
 	@Override
@@ -36,12 +37,17 @@ public class SeeBookActivity extends ActionBarActivity {
 		session = new SessionManager(getApplicationContext());
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
-					.add(R.id.container, new PlaceholderFragment()).commit();
+					.add(R.id.container_book, new PlaceholderFragment()).commit();
 		}
 		
-		adapter = new CustomAdapter(getApplicationContext(), session, rowItems);
-		mDrawerList.setAdapter(adapter);
-		mDrawerList.setOnItemClickListener(new SlideitemListener());
+		RecipeBook book = session.getBook();
+		
+		
+		
+		recipeList = (ListView) findViewById(R.id.book_list);
+		adapter = new LazyAdapter(getApplicationContext(), book.getRecipes());
+		recipeList.setAdapter(adapter);
+		recipeList.setOnItemClickListener(new SlideitemListener());
 	}
 
 	@Override

@@ -61,9 +61,9 @@ public class SeeRecipeActivity extends ActionBarActivity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		
 		getMenuInflater().inflate(R.menu.add_colecao, menu);
-		if(session.getBook().searchRecipe(recipe.getName()) != null){
-			menu.findItem(R.id.action_add_to_book).setIcon(R.drawable.ic_star_on);
-		}
+		//if(session.getBook().searchRecipe(recipe.getName()) != null){
+			//menu.findItem(R.id.action_add_to_book).setIcon(R.drawable.ic_star_on);
+		//}
 		return true;
 	}
 
@@ -81,10 +81,7 @@ public class SeeRecipeActivity extends ActionBarActivity {
 		}else if (id == R.id.action_add_to_book) {
 			if(session.getUserDetails().getBook().searchRecipe(recipe.getName()) == null){
 				menu.findItem(R.id.action_add_to_book).setIcon(R.drawable.ic_star_on);
-				RecipeBook book = session.getUserDetails().getBook();
-				book.addRecipe(recipe);
-				session.getUserDetails().setBook(book);
-				session.saveBook(book);
+				session.addRecipeToBook(recipe);
 			}
 			
 			return true;

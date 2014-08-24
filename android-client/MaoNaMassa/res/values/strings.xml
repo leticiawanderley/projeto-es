@@ -52,6 +52,7 @@
         <item>Nome Usuário</item>
         <item>Buscar Receitas</item>
         <item>Adicionar Receita</item>
+        <item>Meu Livro</item>
     </string-array>
 
     <array name="icons">

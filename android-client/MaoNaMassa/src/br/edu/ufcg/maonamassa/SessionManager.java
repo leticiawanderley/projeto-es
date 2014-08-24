@@ -1,10 +1,17 @@
 package br.edu.ufcg.maonamassa;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import br.edu.ufcg.maonamassa.models.Recipe;
 import br.edu.ufcg.maonamassa.models.RecipeBook;
 import br.edu.ufcg.maonamassa.models.User;
 
@@ -13,7 +20,7 @@ public class SessionManager {
 	// Shared Preferences
 	SharedPreferences pref;
 	SharedPreferences prefBook;
-
+	RecipeBook book = new RecipeBook();
 	// Editor for Shared preferences
 	Editor editor;
 	Editor editorBook;
@@ -42,7 +49,6 @@ public class SessionManager {
 	public static final String KEY_TOKEN = "token";
 
 	public static final String KEY_ID = "id";
-	
 	public static final String KEY_BOOK = "book";
 	
 	public static final String KEY_DONO = "donoName";
@@ -109,17 +115,30 @@ public class SessionManager {
 				KEY_PHOTO, null), pref.getString(KEY_TOKEN, null));
 	}
 	
-	public void saveBook(RecipeBook book){
-		String bookJ = book.jsonify();
+	public void addRecipeToBook(Recipe recipe) {
+		book.addRecipe(recipe);
+		System.out.println(book.getRecipes().size());
+		saveBook();
+		
+	}
+	public void saveBook(){
+		List<Recipe> recipes = book.getRecipes();
+		Set<String> recipe = new TreeSet<String>();
+		for (Recipe r : recipes) {
+			recipe.add(r.jsonify());
+		}
 		editorBook.putString(KEY_DONO, getUserDetails().getId());
-		editorBook.putString(KEY_BOOK, bookJ);
+		editorBook.putStringSet(KEY_BOOK, recipe);
 		editorBook.commit();
 	}
 	
 	public RecipeBook getBook(){
-		String bookJ = prefBook.getString(KEY_BOOK, null);
+		Set<String> bookJ = prefBook.getStringSet(KEY_BOOK, null);
 		RecipeBook book = new RecipeBook();
-		book.desjsonify(bookJ);
+		Recipe x = new Recipe(null, null, null);
+		for (String r : bookJ) {
+			book.addRecipe(x.desjsonify(r));
+		}
 		return book;
 	}
 	
@@ -150,4 +169,6 @@ public class SessionManager {
 	public boolean isLoggedIn() {
 		return pref.getBoolean(IS_LOGIN, false);
 	}
+
+	
 }

@@ -32,7 +32,9 @@ public class SeeRecipeActivity extends ActionBarActivity {
 					.add(R.id.container_ver_receita, new PlaceholderFragment())
 					.commit();
 		}
+		
 		session = new SessionManager(getApplicationContext());
+		
 		ingredientsView = (ListView) findViewById(R.id.ingredient_list);
 		stepsView = (ListView) findViewById(R.id.step_list);
 		Intent i = getIntent();
@@ -59,8 +61,13 @@ public class SeeRecipeActivity extends ActionBarActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		this.menu = menu;
 		// Inflate the menu; this adds items to the action bar if it is present.
-		
+		Intent i = getIntent();
+		recipe = new Recipe(0L, "NULL", null);
+		recipe = recipe.desjsonify(i.getStringExtra("Recipe"));
 		getMenuInflater().inflate(R.menu.add_colecao, menu);
+		if(session.getBook().getRecipes().contains(recipe)) {
+			menu.findItem(R.id.action_add_to_book).setIcon(R.drawable.ic_star_on);
+		}
 		//if(session.getBook().searchRecipe(recipe.getName()) != null){
 			//menu.findItem(R.id.action_add_to_book).setIcon(R.drawable.ic_star_on);
 		//}

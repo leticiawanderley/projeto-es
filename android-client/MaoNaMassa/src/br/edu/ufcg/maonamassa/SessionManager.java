@@ -5,16 +5,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import br.edu.ufcg.maonamassa.models.RecipeBook;
 import br.edu.ufcg.maonamassa.models.User;
 
 @SuppressLint("CommitPrefEdits")
 public class SessionManager {
 	// Shared Preferences
 	SharedPreferences pref;
+	SharedPreferences prefBook;
 
 	// Editor for Shared preferences
 	Editor editor;
-
+	Editor editorBook;
+	
 	// Context
 	Context _context;
 
@@ -23,6 +26,7 @@ public class SessionManager {
 
 	// Sharedpref file name
 	private static final String PREF_NAME = "Pref";
+	private static final String PREFBOOK_NAME = "Pref";
 
 	// All Shared Preferences Keys
 	private static final String IS_LOGIN = "IsLoggedIn";
@@ -38,12 +42,18 @@ public class SessionManager {
 	public static final String KEY_TOKEN = "token";
 
 	public static final String KEY_ID = "id";
+	
+	public static final String KEY_BOOK = "book";
+	
+	public static final String KEY_DONO = "donoName";
 
 	// Constructor
 	public SessionManager(Context context) {
 		this._context = context;
 		pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
+		prefBook = _context.getSharedPreferences(PREFBOOK_NAME, PRIVATE_MODE);
 		editor = pref.edit();
+		editorBook = prefBook.edit();
 	}
 
 	/**
@@ -98,7 +108,21 @@ public class SessionManager {
 				null), pref.getString(KEY_NAME, null), pref.getString(
 				KEY_PHOTO, null), pref.getString(KEY_TOKEN, null));
 	}
-
+	
+	public void saveBook(RecipeBook book){
+		String bookJ = book.jsonify();
+		editorBook.putString(KEY_DONO, getUserDetails().getId());
+		editorBook.putString(KEY_BOOK, bookJ);
+		editorBook.commit();
+	}
+	
+	public RecipeBook getBook(){
+		String bookJ = prefBook.getString(KEY_BOOK, null);
+		RecipeBook book = new RecipeBook();
+		book.desjsonify(bookJ);
+		return book;
+	}
+	
 	/**
 	 * Clear session details
 	 * */

@@ -29,10 +29,12 @@
             android:name="br.edu.ufcg.maonamassa.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
-            	<action android:name="android.intent.action.SEARCH" />
-       		 </intent-filter>
-            <meta-data android:name="android.app.searchable"
-                   android:resource="@xml/searchable"/>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
         </activity>
         <activity
             android:name="br.edu.ufcg.maonamassa.MaoNaMassaActivity"
@@ -67,10 +69,23 @@
             android:label="@string/title_activity_search"
             android:parentActivityName="br.edu.ufcg.maonamassa.MainActivity" >
             <intent-filter>
-            	<action android:name="android.intent.action.SEARCH" />
-       		 </intent-filter>
-            <meta-data android:name="android.app.searchable"
-                   android:resource="@xml/searchable"/>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:value="br.edu.ufcg.maonamassa.MainActivity" />
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name="br.edu.ufcg.maonamassa.SeeBookActivity"
+            android:label="@string/title_activity_see_book"
+            android:parentActivityName="br.edu.ufcg.maonamassa.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.edu.ufcg.maonamassa.MainActivity" />
         </activity>
     </application>
 

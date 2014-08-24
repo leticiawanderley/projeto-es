@@ -13,7 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import br.edu.ufcg.maonamassa.models.Recipe;
 import br.edu.ufcg.maonamassa.models.Step;
-import br.edu.ufcg.maonamassa.models.RecipeBook;;
+import br.edu.ufcg.maonamassa.models.RecipeBook;
 
 public class SeeRecipeActivity extends ActionBarActivity {
 	
@@ -61,11 +61,8 @@ public class SeeRecipeActivity extends ActionBarActivity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		
 		getMenuInflater().inflate(R.menu.add_colecao, menu);
-		if(session.getUserDetails().getBook().searchRecipe(recipe.getName()) != null){
+		if(session.getBook().searchRecipe(recipe.getName()) != null){
 			menu.findItem(R.id.action_add_to_book).setIcon(R.drawable.ic_star_on);
-			RecipeBook book = session.getUserDetails().getBook();
-			book.addRecipe(recipe);
-			session.getUserDetails().setBook(book);
 		}
 		return true;
 	}
@@ -84,7 +81,10 @@ public class SeeRecipeActivity extends ActionBarActivity {
 		}else if (id == R.id.action_add_to_book) {
 			if(session.getUserDetails().getBook().searchRecipe(recipe.getName()) == null){
 				menu.findItem(R.id.action_add_to_book).setIcon(R.drawable.ic_star_on);
-				
+				RecipeBook book = session.getUserDetails().getBook();
+				book.addRecipe(recipe);
+				session.getUserDetails().setBook(book);
+				session.saveBook(book);
 			}
 			
 			return true;

@@ -61,5 +61,6 @@
     </array>
 
     <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_see_book">Meu Livro</string>
 
 </resources>

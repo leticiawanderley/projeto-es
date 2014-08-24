@@ -1,9 +1,10 @@
 package br.edu.ufcg.maonamassa;
 
 import java.util.List;
-
 import br.edu.ufcg.maonamassa.models.Recipe;
+import br.edu.ufcg.maonamassa.models.RecipeBook;
 import br.edu.ufcg.maonamassa.models.Step;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.content.Intent;
@@ -82,11 +83,16 @@ implements AddIngredientDialog.IngredientDialogListener, AddStepDialog.StepDialo
 
 
 
+	@SuppressLint("ShowToast")
 	private void saveRecipe(Recipe recipe) {
 		EditText txt = (EditText) findViewById(R.id.title_new_recipe);
 		recipe.setName(txt.getText().toString());
 		Toast ok = Toast.makeText(this, "Receita salva", 2);
 		recipe.create(session.getUserDetails(), ok);
+		RecipeBook book = session.getUserDetails().getBook();
+		book.addRecipe(recipe);
+		session.getUserDetails().setBook(book);
+		session.saveBook(book);
 		
 	}
 

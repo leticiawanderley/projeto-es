@@ -1,6 +1,9 @@
 package br.edu.ufcg.maonamassa;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -42,8 +45,9 @@ public class MaoNaMassaActivity extends Activity implements
 		Intent i = getIntent();
 		recipe = new Recipe(0L, "NULL", null);
 		recipe = recipe.desjsonify(i.getStringExtra("Recipe"));
-
-		steps = recipe.getSteps().iterator();
+		List<Step> lista = recipe.getSteps();
+		Collections.reverse(lista);
+		steps = lista.iterator();
 
 		CardFragment fragment = new CardFragment();
 		if (steps.hasNext())
@@ -94,10 +98,10 @@ public class MaoNaMassaActivity extends Activity implements
 	}
 
 	private void flipCard() {
-		if (mShowingBack) {
-			getFragmentManager().popBackStack();
-			return;
-		}
+		//if (mShowingBack) {
+			//getFragmentManager().popBackStack();
+	//		return;
+		//}
 
 		// Flip to the back.
 
@@ -190,6 +194,16 @@ public class MaoNaMassaActivity extends Activity implements
 						flipCard();
 					}
 				});
+			else {
+				b.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						Intent intent = new Intent(MaoNaMassaActivity.this, MainActivity.class);
+						startActivity(intent);	
+					}
+				});
+			}
 			String title = step != null ? step.getDescription() : "";
 			String titleButton = step != null ? "Próxima" : "Terminar!";
 			t.setText(title);

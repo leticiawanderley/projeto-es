@@ -18,7 +18,9 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="br.edu.ufcg.maonamassa.TelaBoasVindasActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:configChanges="orientation"
+    		android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,7 +29,9 @@
         </activity>
         <activity
             android:name="br.edu.ufcg.maonamassa.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:configChanges="orientation"
+    		android:screenOrientation="portrait"  >
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -43,7 +47,9 @@
         <activity
             android:name="br.edu.ufcg.maonamassa.AddRecipeActivity"
             android:label="@string/title_activity_add_recipe"
-            android:parentActivityName="br.edu.ufcg.maonamassa.MainActivity" >
+            android:parentActivityName="br.edu.ufcg.maonamassa.MainActivity"
+            android:configChanges="orientation"
+    		android:screenOrientation="portrait"  >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.edu.ufcg.maonamassa.MainActivity" />
@@ -51,7 +57,9 @@
         <activity
             android:name="br.edu.ufcg.maonamassa.SeeRecipeActivity"
             android:label="@string/title_activity_see_recipe"
-            android:parentActivityName="br.edu.ufcg.maonamassa.MainActivity" >
+            android:parentActivityName="br.edu.ufcg.maonamassa.MainActivity"
+            android:configChanges="orientation"
+    		android:screenOrientation="portrait"  >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.edu.ufcg.maonamassa.MainActivity" />
@@ -59,7 +67,9 @@
         <activity
             android:name="br.edu.ufcg.maonamassa.LoginActivity"
             android:label="@string/login_activity"
-            android:parentActivityName="br.edu.ufcg.maonamassa.MainActivity" >
+            android:parentActivityName="br.edu.ufcg.maonamassa.MainActivity"
+            android:configChanges="orientation"
+    		android:screenOrientation="portrait"  >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.edu.ufcg.maonamassa.MainActivity" />
@@ -67,7 +77,9 @@
         <activity
             android:name="br.edu.ufcg.maonamassa.SearchableActivity"
             android:label="@string/title_activity_search"
-            android:parentActivityName="br.edu.ufcg.maonamassa.MainActivity" >
+            android:parentActivityName="br.edu.ufcg.maonamassa.MainActivity"
+            android:configChanges="orientation"
+    		android:screenOrientation="portrait"  >
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -82,7 +94,9 @@
         <activity
             android:name="br.edu.ufcg.maonamassa.SeeBookActivity"
             android:label="@string/title_activity_see_book"
-            android:parentActivityName="br.edu.ufcg.maonamassa.MainActivity" >
+            android:parentActivityName="br.edu.ufcg.maonamassa.MainActivity"
+            android:configChanges="orientation"
+    		android:screenOrientation="portrait"  >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.edu.ufcg.maonamassa.MainActivity" />

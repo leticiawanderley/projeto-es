@@ -61,7 +61,7 @@ public class SessionManager {
 		prefBook = _context.getSharedPreferences(PREFBOOK_NAME, PRIVATE_MODE);
 		editor = pref.edit();
 		editorBook = prefBook.edit();
-		
+		saveBook();
 	}
 
 	/**
@@ -191,8 +191,10 @@ public class SessionManager {
 		Set<String> bookJ = prefBook.getStringSet(KEY_BOOK, null);
 		RecipeBook book = new RecipeBook();
 		Recipe x = new Recipe(null, null, null);
-		for (String r : bookJ) {
-			book.addRecipe(x.desjsonify(r));
+		if(bookJ != null) {
+			for (String r : bookJ) {
+				book.addRecipe(x.desjsonify(r));
+			}
 		}
 		return book;
 	}

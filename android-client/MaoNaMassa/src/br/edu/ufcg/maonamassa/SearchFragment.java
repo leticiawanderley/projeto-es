@@ -41,6 +41,7 @@ public class SearchFragment extends Fragment {
 		} else {
 			new HttpAsyncTask(this.getActivity(), dialog).execute();
 		}
+		data.removeExtra("query");
 		
 		
 		
